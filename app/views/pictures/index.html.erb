@@ -17,14 +17,14 @@
 
 <% @users.each do |user| %>
   <%#= image_tag user, width: "200px" %>
-  <%#= user.Hashtag %>
+  <%= user %>
 
-  <li>user: <%= user.pictures %></li>
+  <li>user: <%= user.id %> <%= user.pictures %></li>
 
 
   <% user.pictures.each do |abc| %>
     <p><%= image_tag abc, width: "100px" %></p>
-    <p><%= abc.name %></p>
+    <p><%= abc.id %></p>
   <% end %>
 
 <% end %>
