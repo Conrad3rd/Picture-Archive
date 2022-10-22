@@ -5,10 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-# rails db:drop db:create db:migrate db:migrate:status
+# rails db:drop db:create db:migrate db:seed db:migrate:status
 # User.delete_all
 # User.destroy_all
+def elapsed_time(start_time, end_time, name)
+  elapsed = end_time - start_time
 
+  if elapsed > 60
+    puts "#{(elapsed / 60).round(2)} minutes to create #{name}"
+  else
+    puts "#{elapsed.round(2)} seconds to create #{name}"
+  end
+end
 
 start_time = Time.now
 ##################################################
@@ -18,12 +26,10 @@ unless User.first
   User.create(email: "admin@gmx.de", password: "123123")
   User.create(email: "zwei@gmx.de", password: "123123")
   user_end = Time.now
-  puts "#{user_end - user_start} seconds to create Users"
+  elapsed_time(user_start, user_end, "Users")
 end
 
 ##################################################
-
-
 unless Picture.first
   pic_start = Time.now
   require "csv"
@@ -39,13 +45,7 @@ unless Picture.first
   end
 
   pic_end = Time.now
-  pic_elapsed = pic_end - pic_start
-
-  if pic_elapsed > 60
-    puts "#{pic_elapsed / 60} minutes to create Pictures"
-  else
-    puts "#{pic_elapsed} seconds to create Pictures"
-  end
+  elapsed_time(pic_start, pic_end, "Pictures")
 end
 
 ##################################################
@@ -57,13 +57,7 @@ unless Hashtag.first
   end
 
   hash_end = Time.now
-  hash_elapsed = hash_end - hash_start
-
-  if hash_elapsed > 60
-    puts "#{hash_elapsed / 60} minutes to create Hashtag"
-  else
-    puts "#{hash_elapsed} seconds to create Hashtag"
-  end
+  elapsed_time(hash_start, hash_end, "Hashtags")
 end
 
 ##################################################
@@ -74,23 +68,27 @@ unless PicturesHashtag.first
     PicturesHashtag.create(id: row[0], hashtag_id: row[1], picture_id: row[2])
   end
   ph_end = Time.now
-  ph_elapsed = ph_end - ph_start
-
-  if ph_elapsed > 60
-    puts "#{ph_elapsed / 60} minutes to create Pictures_Hashtag"
-  else
-    puts "#{ph_elapsed} seconds to create Pictures_Hashtag"
-  end
+  elapsed_time(ph_start, ph_end, "Pictures_Hashtag joins table")
 end
+
+
 
 ##################################################
-puts "create DONE"
+pic_start = Time.now
 
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000001.jpg"), filename: "u1 img_01")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000002.jpg"), filename: "u1 img_02")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000003.jpg"), filename: "u1 img_03")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000004.jpg"), filename: "u1 img_04")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000005.jpg"), filename: "u1 img_05")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000006.jpg"), filename: "u1 img_06")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000007.jpg"), filename: "u1 img_07")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000008.jpg"), filename: "u1 img_08")
+User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000009.jpg"), filename: "u1 img_09")
+pic_end = Time.now
+elapsed_time(pic_start, pic_end, "Pictures import to ActiveStorage")
+
+##################################################
+puts "\nAll seeds DONE"
 ending = Time.now
-elapsed = ending - start_time
-
-if elapsed > 60
-  puts "#{elapsed / 60} minutes to create all"
-else
-  puts "#{elapsed} seconds to create all"
-end
+elapsed_time(start_time, ending, "All seeds")

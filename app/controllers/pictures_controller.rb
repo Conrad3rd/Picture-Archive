@@ -4,7 +4,9 @@ class PicturesController < ApplicationController
   # GET /pictures or /pictures.json
   def index
     @pic_count = Picture.count
-    pic_all = Picture.all
+    @pic_all = Picture.ids
+
+
     # @pictures = Picture.all
     @pictures = Picture.where("id < ?", 10)
 
@@ -19,6 +21,12 @@ class PicturesController < ApplicationController
     @zwei = ActiveStorage::Attachment.joins(pictures: [:path])
 
     @users = User.all
+
+    # @hashtag = ActiveRecord::Base.connection.execute("SELECT id, name FROM hashtags WHERE id IN (SELECT hashtag_id FROM pictures_hashtags WHERE picture_id = 1);").to_a
+
+    @pic_all.each do |id|
+      # @hashtag = ActiveRecord::Base.connection.execute("SELECT id, name FROM hashtags WHERE id IN (SELECT hashtag_id FROM pictures_hashtags WHERE picture_id = #{id});").to_a
+    end
   end
 end
 
