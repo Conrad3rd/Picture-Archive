@@ -1,43 +1,11 @@
 <h1>Pictures/index</h1>
 <p>Pictures: <%= @pic_count %></p>
-<% @pictures.each do |pic| %>
-  <li>Pictures:
-    <%= pic.id %> : <%= pic.path %>
-    <%= ActiveRecord::Base.connection.execute("
-      SELECT name
-      FROM hashtags
-      WHERE id
-      IN (
-        SELECT hashtag_id
-        FROM pictures_hashtags
-        WHERE picture_id = #{pic.id}
-      );"
-    ).to_a %>
-  </li>
-  <%#= image_tag pic %>
-<% end %>
-<%#= @atta_count %>
-<br>
-<%# @atta_show.each do |atta| %>
-  <%#= image_tag atta, width: "100px" %>
-  <%# end %>
-  <%#= @sas %>
-  <% @users.each do |user| %>
-    <%#= image_tag user, width: "200px" %>
-    <%#= user %>
-    <%# <li>user: %>
-    <%#= user.id %> <%#= user.email %>
-    <%# </li> %>
-    <li>email: <%= user.email %></li>
-    <li>pictures: <%= user.pictures %></li>
-
-    <li>@user_123: <%= user %></li>
-    <% user.pictures.each do |abc| %>
-      <%= image_tag abc, width: "100px" %>
-      <%= link_to user.email, picture_path(abc) %>
-      <%#= link_to user.email, picture_path(@picture.id) %>
-      <%#= link_to user.email, user_picture_path(@user, @picture) %>
-      <%#= abc.id %>
-      <%#= abc %>
-    <% end %>
+<% @users.each do |user| %>
+  <li>email: <%= user.email %></li>
+  <li>pictures: <%= user.pictures %></li>
+  <li>@users: <%= user %></li>
+  <% user.pictures.each do |abc| %>
+    <%= image_tag abc, width: "100px" %>
+    <%= link_to user.email, picture_path(abc) %>
   <% end %>
+<% end %>
