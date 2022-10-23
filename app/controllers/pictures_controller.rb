@@ -28,6 +28,8 @@ class PicturesController < ApplicationController
       # @hashtag = ActiveRecord::Base.connection.execute("SELECT id, name FROM hashtags WHERE id IN (SELECT hashtag_id FROM pictures_hashtags WHERE picture_id = #{id});").to_a
     end
   end
+
+  
 end
 
 
