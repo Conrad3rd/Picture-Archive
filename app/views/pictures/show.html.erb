@@ -1,0 +1,11 @@
+<h1>picture/show</h1>
+<li><%#= @picture.id %></li>
+<li><%#= @picture.path %></li>
+<li><%#= @picture.user_id %></li>
+
+
+<li>aaa <%= image_tag @picture %></li>
+<li>bbb <%= @picturee %></li>
+<% @picturee.each do |aa| %>
+  <%= image_tag aa %>
+<% end %>
