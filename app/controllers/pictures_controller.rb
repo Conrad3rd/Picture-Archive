@@ -3,13 +3,13 @@ class PicturesController < ApplicationController
 
   # GET /pictures or /pictures.json
   def index
-    # @pictures = Picture.all
+    @pictures = Picture.all
     # @pictures = Picture.where("id < ?", 10)
     @users = User.all
   end
 
   def show
     @picture = Picture.find(params[:id])
-    @user = Picture.where(id: @picture)
+    @user = User.find(params[:id])
   end
 end
