@@ -15,34 +15,34 @@
     ).to_a %>
   </li>
   <%#= image_tag pic %>
-
-
 <% end %>
-
-
 <%#= @atta_count %>
 <br>
-<% @atta_show.each do |atta| %>
-  <%= image_tag atta, width: "100px" %>
-<% end %>
+<%# @atta_show.each do |atta| %>
+  <%#= image_tag atta, width: "100px" %>
+  <%# end %>
+  <%#= @sas %>
+  <% @users.each do |user| %>
+    <%#= image_tag user, width: "200px" %>
+    <%#= user %>
+    <%# <li>user: %>
+    <%#= user.id %> <%#= user.email %>
+    <%# </li> %>
+    <p>user:
+      <%= user.email %>
+      <%#= user.pictures %>
+    </p>
+    <% user.pictures.each do |picture| %>
+      <%#= image_tag picture, width: "100px" %>
+      <%#= user.email %>
+      <%# <li> %>
+      <%#= picture.path %>
+      <%# </li> %>
 
-
-<%#= @sas %>
-
-<% @users.each do |user| %>
-  <%#= image_tag user, width: "200px" %>
-  <%#= user %>
-
-  <li>user: <%= user.id %> <%= user.email %></li>
-
-<li> asdf: <%= user.pictures %></li>
-
-  <% user.pictures.each do |abc| %>
-    <p><%= image_tag abc, width: "100px" %></p>
-    <p><%= user.email %></p>
+    <% end %>
+    <% user.uploads.each do |abc| %>
+      <%= image_tag abc, width: "100px" %>
+      <%= link_to user.email, picture_path(abc) %>
+      <%#= abc %>
+    <% end %>
   <% end %>
-
-<% end %>
-
-
-<%= @hashtag %>

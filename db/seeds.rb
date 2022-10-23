@@ -76,14 +76,37 @@ end
 ##################################################
 pic_start = Time.now
 
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000001.jpg"), filename: "u1 img_01")
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000002.jpg"), filename: "u1 img_02")
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000003.jpg"), filename: "u1 img_03")
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000004.jpg"), filename: "u1 img_04")
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000005.jpg"), filename: "u1 img_05")
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000006.jpg"), filename: "u1 img_06")
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000007.jpg"), filename: "u1 img_07")
-User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000008.jpg"), filename: "u1 img_08")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000001.jpg"), filename: "u1 img_01")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000002.jpg"), filename: "u1 img_02")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000003.jpg"), filename: "u1 img_03")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000004.jpg"), filename: "u1 img_04")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000005.jpg"), filename: "u1 img_05")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000006.jpg"), filename: "u1 img_06")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000007.jpg"), filename: "u1 img_07")
+# User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000008.jpg"), filename: "u1 img_08")
+
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000001.jpg"), filename: "u1 img_01")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000002.jpg"), filename: "u1 img_02")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000003.jpg"), filename: "u1 img_03")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000004.jpg"), filename: "u1 img_04")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000005.jpg"), filename: "u1 img_05")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000006.jpg"), filename: "u1 img_06")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000007.jpg"), filename: "u1 img_07")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000008.jpg"), filename: "u1 img_08")
+User.first.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000009.jpg"), filename: "u1 img_09")
+
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000001.jpg"), filename: "u2 img_01")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000002.jpg"), filename: "u2 img_02")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000003.jpg"), filename: "u2 img_03")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000004.jpg"), filename: "u2 img_04")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000005.jpg"), filename: "u2 img_05")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000006.jpg"), filename: "u2 img_06")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000007.jpg"), filename: "u2 img_07")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000008.jpg"), filename: "u2 img_08")
+User.last.uploads.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_05/00000009.jpg"), filename: "u2 img_09")
+
+
+
 User.first.pictures.attach(io: File.open("/home/conrad/Dropbox/Dokumente/Linux/howto/rails/img_import/files/SLGE/M/Slg.01/1-5.Kasten_02/00000009.jpg"), filename: "u1 img_09")
 pic_end = Time.now
 elapsed_time(pic_start, pic_end, "Pictures import to ActiveStorage")

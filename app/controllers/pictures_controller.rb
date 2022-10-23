@@ -3,6 +3,7 @@ class PicturesController < ApplicationController
 
   # GET /pictures or /pictures.json
   def index
+
     @pic_count = Picture.count
     @pic_all = Picture.ids
 
@@ -29,7 +30,14 @@ class PicturesController < ApplicationController
     end
   end
 
-  
+  def show
+    @picture = Picture.find(params[:id])
+    @picturee = Picture.where(params[:id])
+
+  end
+
+
+
 end
 
 
