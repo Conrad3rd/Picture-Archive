@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :uploads
+  #resources :uploads
   resources :pictures
   devise_for :users
   root to: "pages#home"
@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  resources :users do
+    resources :pictures
+  end
 end

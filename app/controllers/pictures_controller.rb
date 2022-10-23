@@ -32,7 +32,12 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find(params[:id])
-    @picturee = Picture.where(params[:id])
+    # @user = User.find(params[:id])
+    # @user = User.find(params[:user_id])
+    @user = Picture.where(id: @picture)
+    # @picture = User.find(params[:id])
+    # @upload = Upload.find(params[:id])
+    # @picturee = @picture.where(record_id: @picture)
 
   end
 

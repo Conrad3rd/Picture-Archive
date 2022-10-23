@@ -28,21 +28,16 @@
     <%# <li>user: %>
     <%#= user.id %> <%#= user.email %>
     <%# </li> %>
-    <p>user:
-      <%= user.email %>
-      <%#= user.pictures %>
-    </p>
-    <% user.pictures.each do |picture| %>
-      <%#= image_tag picture, width: "100px" %>
-      <%#= user.email %>
-      <%# <li> %>
-      <%#= picture.path %>
-      <%# </li> %>
+    <li>email: <%= user.email %></li>
+    <li>pictures: <%= user.pictures %></li>
 
-    <% end %>
-    <% user.uploads.each do |abc| %>
+    <li>@user_123: <%= user %></li>
+    <% user.pictures.each do |abc| %>
       <%= image_tag abc, width: "100px" %>
       <%= link_to user.email, picture_path(abc) %>
+      <%#= link_to user.email, picture_path(@picture.id) %>
+      <%#= link_to user.email, user_picture_path(@user, @picture) %>
+      <%#= abc.id %>
       <%#= abc %>
     <% end %>
   <% end %>

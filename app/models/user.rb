@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many_attached :uploads
-  has_many :pictures
-  has_many :pictures_hashtags
+  has_many_attached :pictures
+  # has_many :pictures
+  # has_many :pictures_hashtags
 end
