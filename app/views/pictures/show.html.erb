@@ -1,23 +1,16 @@
 <h1>picture/show</h1>
 
-<%= image_tag @picture, width: "100px" %>
-<li>@picture.id: <%= @picture.id %></li>
-<li>p_info.path: <%= @p_info.path %></li>
-<li>@pictures_hash: <%= @pictures_hash %></li>
-<li>@hashtag: <%= @hashtag %></li>
-<li>@hashtagg: <%= @hashtagg %></li>
-<% @pictures_hash.each do |ha| %>
-  <li>hash_id: <%= ha.hashtag_id %>, pic_id <%= ha.picture_id %></li>
-  <%# @hashtag.each do |hh| %>
-    <%#= hh.name %>
-  <%# end %>
-<% end %>
+<%= image_tag @picture, width: "200px" %>
+<li>Path: <%= @p_info.path %></li>
+<li>Image ID: <%= @picture.id %></li>
 
 
-<% @pictures_hash.each do |ha| %>
-  <% @hashtagg.each do |hh| %>
-    <% if hh.id === ha.hashtag_id %>
-      <%= hh.name %>
+<li>
+  <% @pictures_hash.each do |pic_hash| %>
+    <% @hashtag.each do |hashtag| %>
+      <% if hashtag.id === pic_hash.hashtag_id %>
+        <%= hashtag.name %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+</li>

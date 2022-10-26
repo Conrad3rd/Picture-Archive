@@ -14,7 +14,6 @@ class PicturesController < ApplicationController
     @p_info = Picture.find(params[:id])
 
     @pictures_hash = PicturesHashtag.where(picture_id: params[:id])
-    @hashtag = PicturesHashtag.where(picture_id: params[:id])
-    @hashtagg = Hashtag.all
+    @hashtag = Hashtag.all
   end
 end
