@@ -6,10 +6,15 @@ class PicturesController < ApplicationController
     @pictures = Picture.all
     # @pictures = Picture.where("id < ?", 10)
     @users = User.all
+    # @user = User.find(params[:id])
   end
 
   def show
-    @picture = Picture.find(params[:id])
-    @user = User.find(params[:id])
+    @picture = ActiveStorage::Attachment.find(params[:id])
+    @p_info = Picture.find(params[:id])
+
+    @pictures_hash = PicturesHashtag.where(picture_id: params[:id])
+    @hashtag = PicturesHashtag.where(picture_id: params[:id])
+    @hashtagg = Hashtag.all
   end
 end

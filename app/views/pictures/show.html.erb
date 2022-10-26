@@ -1,11 +1,23 @@
 <h1>picture/show</h1>
-<li>aaa <%= image_tag @picture %></li>
-<li>bbb <%= @picture.path %></li>
-<li>ccc <%= @picture %></li>
-<li>Picture ID: <%= @picture.id %></li>
-<li>eee <%#= @user.id %></li>
-<li>Email: <%= @user.email %></li>
-<li>ggg <%= @user %></li>
-<%# @user.each do |aa| %>
-  <%#= image_tag aa %>
-<%# end %>
+
+<%= image_tag @picture, width: "100px" %>
+<li>@picture.id: <%= @picture.id %></li>
+<li>p_info.path: <%= @p_info.path %></li>
+<li>@pictures_hash: <%= @pictures_hash %></li>
+<li>@hashtag: <%= @hashtag %></li>
+<li>@hashtagg: <%= @hashtagg %></li>
+<% @pictures_hash.each do |ha| %>
+  <li>hash_id: <%= ha.hashtag_id %>, pic_id <%= ha.picture_id %></li>
+  <%# @hashtag.each do |hh| %>
+    <%#= hh.name %>
+  <%# end %>
+<% end %>
+
+
+<% @pictures_hash.each do |ha| %>
+  <% @hashtagg.each do |hh| %>
+    <% if hh.id === ha.hashtag_id %>
+      <%= hh.name %>
+    <% end %>
+  <% end %>
+<% end %>
