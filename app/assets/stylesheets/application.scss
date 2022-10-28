@@ -11,7 +11,63 @@
 @import "components/index";
 @import "pages/index";
 
+#PicPath {
+
+}
+
+// ul li {
+//   // word-break: normal;
+//   white-space: normal;
+//   word-break: break-all;
+//   width: 50%;
+// }
+
+.InfoCard {
+  background: #b3ffc7;
+}
+
+
 .showpic {
   max-width: 100%;
   max-height: 100%;
+  display: block; /* remove extra space below image */
+}
+
+
+
+
+@media screen and (max-height: 549px) {
+  body {
+    background-color: blue;
+  }
+  .heightpic {
+    height: 59vh;
+  }
+}
+
+@media screen and (min-height: 550px) {
+  body {
+    background-color: green;
+  }
+  .heightpic {
+    height: 70vh;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  body {
+    background-color: yellow;
+  }
+  .heightpic {
+    height: 76vh;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  body {
+    background-color: red;
+  }
+  .heightpic {
+    height: unset;
+  }
 }

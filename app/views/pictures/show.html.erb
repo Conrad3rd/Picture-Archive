@@ -1,23 +1,26 @@
 <h1>picture/show</h1>
-  <div class="row justify-content-between m-0">
-    <div style="" class="container text-center ">
-      <%= link_to "index", pictures_path(:anchor => "pic#{@picture.id - 10}"), class: "btn" %>
-      <%= link_to "prev", picture_path(@prev - 1), class: "btn" %>
-      <%= link_to "next", picture_path(@next + 1), class: "btn" %>
-    </div>
-    <div style="" class="col-sm-8">
-      <% if current_user.id === 1 %>
-        <div style="height: 62vh;" class="">
-          <%= image_tag @picture, class: "showpic" %>
-        </div>
-      <% else %>
-        <%#= image_tag @picture, width: "600px" %>
-        <%= image_tag @picture.variant(resize_to_limit: [400, 400])  %>
-      <% end %>
-    </div>
-    <div style="background: #b3ffc7;" class="col-sm-4">
-      <li>Path: <%= @picture_info.path %></li>
-      <li>Image ID: <%= @picture.id %></li>
-      <li><%= @hashtags.pluck("name") %></li>
-    </div>
+
+<div class="row justify-content-between m-0">
+  <div style="" class="container text-center ">
+    <%= link_to "index", pictures_path(:anchor => "pic#{@picture.id - 10}"), class: "btn" %>
+    <%= link_to "prev", picture_path(@prev - 1), class: "btn" %>
+    <%= link_to "next", picture_path(@next + 1), class: "btn" %>
   </div>
+  <div style="" class="col-sm-8">
+    <% if current_user.id === 1 %>
+      <div style="" class="heightpic">
+        <%= image_tag @picture, class: "showpic" %>
+      </div>
+    <% else %>
+      <%#= image_tag @picture, width: "600px" %>
+      <%= image_tag @picture.variant(resize_to_limit: [400, 400]), class: "showpic"  %>
+    <% end %>
+  </div>
+  <div style="" class="InfoCard col-sm-4">
+    <% if current_user.id === 1 %>
+      <pre><li id="PicPath">Path: <%= @picture_info.path %></li></pre>
+    <% end %>
+    <li>Image ID: <%= @picture.id %></li>
+    <li><%= @hashtags.pluck("name") %></li>
+  </div>
+</div>
