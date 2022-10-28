@@ -1,13 +1,19 @@
 <h1>Pictures/index</h1>
 <li>Pictures: <%= @pictures.count %></li>
-
 <%= "===========================================" %>
-<% 2.times { %><br><% } %>
-
-<% @pictures.each do |picture| %>
-  <%= link_to image_tag(picture.variant(resize_to_limit: [100, 100])), picture_path(picture) %>
-<% end %>
-
-<% 5.times { %><br><% } %>
-
+<% 2.times { %><br>
+<% } %>
+<div class="container">
+  <div class="row">
+    <% @pictures.each do |picture| %>
+      <div class="col-sm m-3 text-center">
+        <%= link_to image_tag(picture.variant(resize_to_limit: [100, 100])), picture_path(picture) %>
+        <br>
+        <div id="pic<%= picture.id %>"><%= link_to picture.id, picture_path(picture) %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% 5.times { %><br>
+<% } %>
 <%= "===========================================" %>

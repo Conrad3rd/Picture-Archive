@@ -1,15 +1,23 @@
 <h1>picture/show</h1>
-<%= image_tag @picture %>
-<%#= image_tag @picture, width: "400px" %>
-<%#= image_tag @picture.representation(resize_to_limit: [100, 100]) %>
-<li>Path: <%= @picture_info.path %></li>
-<li>Image ID: <%= @picture.id %></li>
-<li><%= @hashtags.pluck("name") %></li>
-
-<%# @pictures_hash.each do |pic_hash| %>
-  <%# @hashtag.each do |hashtag| %>
-    <%# if hashtag.id === pic_hash.hashtag_id %>
-      <%#= hashtag.name %>
-    <%# end %>
-  <%# end %>
-<%# end %>
+  <div class="row justify-content-between m-0">
+    <div style="" class="container text-center ">
+      <%= link_to "index", pictures_path(:anchor => "pic#{@picture.id - 10}"), class: "btn" %>
+      <%= link_to "prev", picture_path(@prev - 1), class: "btn" %>
+      <%= link_to "next", picture_path(@next + 1), class: "btn" %>
+    </div>
+    <div style="" class="col-sm-8">
+      <% if current_user.id === 1 %>
+        <div style="height: 62vh;" class="">
+          <%= image_tag @picture, class: "showpic" %>
+        </div>
+      <% else %>
+        <%#= image_tag @picture, width: "600px" %>
+        <%= image_tag @picture.variant(resize_to_limit: [400, 400])  %>
+      <% end %>
+    </div>
+    <div style="background: #b3ffc7;" class="col-sm-4">
+      <li>Path: <%= @picture_info.path %></li>
+      <li>Image ID: <%= @picture.id %></li>
+      <li><%= @hashtags.pluck("name") %></li>
+    </div>
+  </div>
