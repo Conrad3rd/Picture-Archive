@@ -1,43 +1,13 @@
 <h1>Pictures/index</h1>
-
 <li>Pictures: <%= @pictures.count %></li>
-<% @pictures.take(1).each do |pic| %>
-  <%= "===========================================" %>
-  <br>
-  <% pic.user.pictures.each do |aa| %>
-    <%= link_to image_tag(aa, width: "100px"), picture_path(aa) %>
-  <% end %>
-  <br>
-  <%= "===========================================" %>
-  <li>pic: <%= image_tag pic %></li>
-  <li>pic: <%= pic.user %></li>
-  <li>email: <%= pic.user.email %></li>
-  <li>pic.user.pictures: <%= pic.user.pictures %></li>
-  <li>user_pic: <%#= @user %></li>
-  <li>pic_path: <%= pic.path %></li>
-  <li>pic_id: <%= pic.id %></li>
-  <li>user: <%= pic.user %></li>
-  <li>pic.user.pictures: <%= pic.user.pictures %></li>
-  <li><b>@hashtag</b>: <%#= pic.hashtags %></li>
-  <li><b>pictures_hashtags</b>: <%= pic.pictures_hashtags %></li>
-  <%#= "===========================================" %>
-  <b><%= "pic.pictures_hashtags.each do |bb|" %></b>
-  <% pic.pictures_hashtags.each do |bb| %>
-    <li>id: <%= bb.id %></li>
-    <li>hashtag_id: <%= bb.hashtag_id %></li>
-    <li>picture_id: <%= bb.picture_id %></li>
-  <% end %>
-  <%= "===========================================" %>
-  <br>
+
+<%= "===========================================" %>
+<% 2.times { %><br><% } %>
+
+<% @pictures.each do |picture| %>
+  <%= link_to image_tag(picture.variant(resize_to_limit: [100, 100])), picture_path(picture) %>
 <% end %>
 
-<% @users.each do |user| %>
-  <li>email: <%= user.email %></li>
-  <li>pictures: <%= user.pictures %></li>
-  <li>@users: <%= user %></li>
-  <% user.pictures.each do |abc| %>
-    <%#= image_tag abc, width: "100px" %>
-    <%= link_to user.email, picture_path(abc) %>
-    <%#= link_to user.email, picture_path(abc) %>
-  <% end %>
-<% end %>
+<% 5.times { %><br><% } %>
+
+<%= "===========================================" %>

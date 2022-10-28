@@ -3,17 +3,22 @@ class PicturesController < ApplicationController
 
   # GET /pictures or /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = ActiveStorage::Attachment.where(record_type: "User").take(4).each(&:record_type)
+    # @picturess = Picture.all
     # @pictures = Picture.where("id < ?", 10)
-    @users = User.all
+    # @users = User.all
     # @user = User.find(params[:id])
   end
 
   def show
     @picture = ActiveStorage::Attachment.find(params[:id])
-    @p_info = Picture.find(params[:id])
+    @picture_info = Picture.find(params[:id])
 
-    @pictures_hash = PicturesHashtag.where(picture_id: params[:id])
-    @hashtag = Hashtag.all
+    @hashtags = []
+    PicturesHashtag.where(picture_id: @picture.id).each do |hashtag|
+      @hashtags << hashtag.hashtag_id
+    end
+
+    @hashtags = Hashtag.where(id: @hashtags)
   end
 end

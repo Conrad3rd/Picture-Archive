@@ -70,3 +70,6 @@ group :development do
   # gem "spring"
 end
 
+# gem 'image_clipper', '~> 0.0.1'
+# gem 'image_clipper'
+gem 'will_paginate', '~> 3.3', '>= 3.3.1'
