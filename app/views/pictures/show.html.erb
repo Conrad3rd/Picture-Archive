@@ -1,10 +1,9 @@
 <h1>picture/show</h1>
-
 <div class="row justify-content-between m-0">
   <div style="" class="container text-center ">
     <%= link_to "index", pictures_path(:anchor => "pic#{@picture.id - 10}"), class: "btn" %>
-    <%= link_to "prev", picture_path(@prev - 1), class: "btn" %>
-    <%= link_to "next", picture_path(@next + 1), class: "btn" %>
+    <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
+    <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
   </div>
   <div style="" class="col-sm-8">
     <% if current_user.id === 1 %>
@@ -13,14 +12,33 @@
       </div>
     <% else %>
       <%#= image_tag @picture, width: "600px" %>
-      <%= image_tag @picture.variant(resize_to_limit: [400, 400]), class: "showpic"  %>
+      <%= image_tag @picture.variant(resize_to_limit: [300, 300]), class: "showpic"  %>
+      <%#= image_tag @picture, class: "showpic"  %>
     <% end %>
   </div>
   <div style="" class="InfoCard col-sm-4">
     <% if current_user.id === 1 %>
-      <pre><li id="PicPath">Path: <%= @picture_info.path %></li></pre>
+      <div id="FilePath">
+        <li id="PicPath">Path: <%= @picture_info.path %></li>
+      </div>
     <% end %>
     <li>Image ID: <%= @picture.id %></li>
-    <li><%= @hashtags.pluck("name") %></li>
+    <% counter = 0 %>
+    <% @hashtags.each do |hashtag| %>
+      <div class="button">
+      <div><%= hashtag.id %></div>
+        <div><%= hashtag.name %></div>
+        <div><%= @del.pluck("id")[counter] %></div>
+        <div class="button-del">X</div>
+        <% counter += 1 %>
+      </div>
+    <% end %>
+    <br>
+    <br>
+    <ol>
+      <li><%= @hashtags.pluck("name") %></li>
+      <li><%= @del.pluck("hashtag_id") %></li>
+      <li><%= @del.pluck("id") %></li>
+    </ol>
   </div>
 </div>

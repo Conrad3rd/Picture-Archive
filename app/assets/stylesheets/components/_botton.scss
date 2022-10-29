@@ -1,0 +1,38 @@
+.button {
+  border: #554a4a solid 1px;
+  /* inline-size: fit-content; */
+  display: inline-block;
+  padding: 1px 2px 2px 4px;
+  margin: 4px 3px;
+  box-shadow: 1px 1px 1px #7b7474;
+  background: #ededed;
+}
+.button:hover {
+  cursor: grab;
+  background: #c4c4c4;
+}
+
+.button-dell {
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 12px;
+  vertical-align: bottom;
+  margin-left: 9px;
+  background: red;
+
+}
+.button-del {
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 12px;
+  vertical-align: bottom;
+  margin: 1px 2px 2px 9px;
+  background: #cccccc;
+  padding: 0px 5px 0px 5px;
+
+}
+
+.button-del:hover {
+  background: red;
+  cursor: grab;
+}

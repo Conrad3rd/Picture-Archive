@@ -3,7 +3,17 @@ class PicturesController < ApplicationController
 
   # GET /pictures or /pictures.json
   def index
-    @pictures = ActiveStorage::Attachment.where(record_type: "User").take(400)
+    pages = 10
+    @pictures = ActiveStorage::Attachment
+                .where(record_type: "User")
+                .take(pages)
+
+    @pp = ActiveStorage::Attachment
+          .where(record_type: "User")
+          .and(ActiveStorage::Attachment
+          .where("id > ?", pages))
+          .take(4)
+
     # @picturess = Picture.all
     # @pictures = Picture.where("id < ?", 10)
     # @users = User.all
@@ -12,8 +22,6 @@ class PicturesController < ApplicationController
 
   def show
     @picture = ActiveStorage::Attachment.find(params[:id])
-    @prev = @picture.id
-    @next = @picture.id
 
     @picture_info = Picture.find(params[:id])
 
@@ -23,5 +31,11 @@ class PicturesController < ApplicationController
     end
 
     @hashtags = Hashtag.where(id: @hashtags)
+    # @hashtags_name = @hashtags.pluck("name")
+    # @hashtags_id = @hashtags.pluck("id")
+    @del = PicturesHashtag
+           .where(hashtag_id: @hashtags)
+           .and(PicturesHashtag
+           .where(picture_id: params[:id]))
   end
 end

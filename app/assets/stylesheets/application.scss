@@ -11,19 +11,22 @@
 @import "components/index";
 @import "pages/index";
 
-#PicPath {
 
+#FilePath {
+  overflow: auto;
+  white-space: nowrap;
 }
 
-// ul li {
-//   // word-break: normal;
-//   white-space: normal;
-//   word-break: break-all;
-//   width: 50%;
-// }
+.showpage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
 
 .InfoCard {
-  background: #b3ffc7;
+  // background: #b3ffc7;
 }
 
 
@@ -34,20 +37,33 @@
 }
 
 
-
+#LoginForm, #EditForm{
+  margin: auto;
+  margin-top: 3%;
+  max-width: 500px;
+  border: 3px solid #929292;
+  padding: 10px;
+  background-color: aliceblue;
+  box-shadow: 8px 8px 35px -7px rgba(0,0,0,0.5);
+  border-radius: 24px;
+  padding: 60px;
+  max-inline-size: fit-content;
+}
 
 @media screen and (max-height: 549px) {
   body {
-    background-color: blue;
+    background-color: #1abcff;
   }
   .heightpic {
     height: 59vh;
   }
 }
 
+
+
 @media screen and (min-height: 550px) {
   body {
-    background-color: green;
+    background-color: #d2fbd2;
   }
   .heightpic {
     height: 70vh;
@@ -56,7 +72,7 @@
 
 @media screen and (min-height: 700px) {
   body {
-    background-color: yellow;
+    background-color: #ebebbe;
   }
   .heightpic {
     height: 76vh;
@@ -65,9 +81,18 @@
 
 @media screen and (max-width: 575px) {
   body {
-    background-color: red;
+    // background-color: #ff9f9f;
   }
   .heightpic {
     height: unset;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  body {
+    background-color: #1eff1a;
+  }
+  #LoginForm, #EditForm {
+    padding: 24px;
   }
 }
