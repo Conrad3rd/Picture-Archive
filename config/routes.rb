@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  uuid = SecureRandom.uuid
-  get "hash-rm/:id", to: 'picturehash#destroy', as: 'picturehash'
-  get 'picturehash/update', to: 'picturehash#update', as: 'picturehashupdate'
-
+  get "hash/remove/:id", to: 'picturehash#remove', as: 'picture_hash_remove'
+  get 'hash/add', to: 'picturehash#add', as: 'picture_hash_add'
 
   #resources :uploads
   resources :pictures, only: %i[index show]

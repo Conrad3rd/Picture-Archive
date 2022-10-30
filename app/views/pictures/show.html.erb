@@ -35,16 +35,16 @@
     <% @hashtags_set.each do |hashtag| %>
       <div class="button">
         <%= hashtag.hashtag.name %>
-        <%= link_to "X", picturehash_path(hashtag.id), class: "btn button-action button-del"  %>
+        <%= link_to "X", picture_hash_remove_path(hashtag.id), class: "btn button-action button-del"  %>
       </div>
     <% end %>
     <div>==============================</div>
-    <% @hashtags_xyz.each do |hashtag|%>
+    <% @hashtags_add.each do |hashtag|%>
       <div class="button">
         <%= hashtag.name %>
         (<%= hashtag.id %>)
         <%#= link_to "+", picturehash_path(hashtag.id), class: "btn button-action button-add"  %>
-        <%= link_to "+", picturehashupdate_path({hashtag_id: hashtag.id, picture_id: @picture.id}), class: "btn button-action button-add"  %>
+        <%= link_to "+", picture_hash_add_path({hashtag_id: hashtag.id, picture_id: @picture.id}), class: "btn button-action button-add"  %>
         <%# button_to "+", { :contoller=>'picturehashupdate_path', :action=>'update', hashtag_id: 312, picture_id: 53}, :method => :put %>
       </div>
     <% end %>

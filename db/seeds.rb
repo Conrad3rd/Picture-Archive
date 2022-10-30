@@ -60,7 +60,7 @@ unless ActiveStorage::Blob.first
   # end
 
   counter = 1
-  pfad.take(1000).each do |row|
+  pfad.take(500).each do |row|
     User.first.pictures.attach(io: File.open(row), filename: "%05d" % counter + ".jpg")
     counter += 1
     # puts counter
@@ -88,7 +88,7 @@ unless Picture.first
   elapsed_time(pic_start, pic_end, "feed Pictures to DB")
 end
 ##################################################
-# add Hashtag (41568) to table
+# add Hashtag to table
 unless Hashtag.first
   hash_start = Time.now
   puts "\ncreate Hashtag"
@@ -100,7 +100,7 @@ unless Hashtag.first
   elapsed_time(hash_start, hash_end, "feed Hashtags to DB")
 end
 ##################################################
-# add PicturesHashtag to table
+# add PicturesHashtag (41568) to table
 unless PicturesHashtag.first
   ph_start = Time.now
   puts "\ncreate PicturesHashtag"
