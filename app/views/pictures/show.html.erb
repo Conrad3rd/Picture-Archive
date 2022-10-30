@@ -6,7 +6,6 @@
       <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
     <% else %>
       <div id="last" class="btn"><%= "last"%></div>
-
       <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
     <% end %>
     <% if @picture.id < @pictures_count %>
@@ -33,32 +32,11 @@
       </div>
     <% end %>
     <li>Image ID: <%= @picture.id %></li>
-    <% counter = 0 %>
     <% @hashtags.each do |hashtag| %>
-
-    <% hashtag.id %>
       <div class="button">
-        <div><%= hashtag.id %></div>
-        <div><%= hashtag.name %></div>
-        <div><%#= @del.pluck("id")[counter] %></div>
-        <div class="button-del"><%= link_to "X", picturehash_path(@hashtags_id)  %></div>
-        <% counter += 1 %>
+        <%= hashtag.hashtag.name %>
+        <%= link_to "X", picturehash_path(hashtag.id), class: "btn button-del"  %>
       </div>
     <% end %>
-    <br>
-    <br>
-    <ol>
-      <li id="1."><%= @hashtags.pluck("name") %></li>
-      <li id="2."><%= @del.pluck("hashtag_id") %></li>
-      <li id="3."><%= @hashtags_id.pluck("id") %></li>
-      <li id="4."><%= @hashtags_id.pluck("hashtag_id") %></li>
-      <li id="5."><%= @hashtags_id.pluck("picture_id") %></li>
-      <li id="6."><%= @del %></li>
-      <li id="7."><%= @del.inspect %></li>
-      <li id="8."><%= @del %></li>
-      <li id="9."><%= SecureRandom.uuid %></li>
-      <li id="10."><%= SecureRandom.urlsafe_base64 %></li>
-      <li id="11."><%= @pictures_count %></li>
-    </ol>
   </div>
 </div>

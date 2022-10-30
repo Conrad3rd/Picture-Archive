@@ -18,24 +18,27 @@ class PicturesController < ApplicationController
 
     @picture_info = Picture.find(params[:id])
 
-    @hashtags = []
-    #@hashtags_id = @hashtags
-    @hashtags_id = PicturesHashtag.where(picture_id: @picture.id).each do |hashtag|
-      @hashtags << hashtag.hashtag_id
-    end
+    # @hashtags = []
+    # @hashtags_id = @hashtags
+    @hashtags = PicturesHashtag.where(picture_id: @picture.id) # .each(&:hashtag) # .each do |hashtag|
+    #@hashtagss =
 
-    #@hashtags_id = @hashtags_id.pluck("id")
-    @hashtags = Hashtag.where(id: @hashtags)
+      # hashtag.hashtag_id
+      # @hashtags << hashtag.hashtag_id
+    # end
 
-    @hashtags_id = PicturesHashtag
-           .where(hashtag_id: @hashtags)
-           .and(PicturesHashtag
-            .where(picture_id: params[:id]))
+    # @hashtags_id = @hashtags_id.pluck("id")
+    # @hashtags = Hashtag.where(id: @hashtags)
+
+    # @hashtags_id = PicturesHashtag
+    #        .where(hashtag_id: @hashtags)
+    #        .and(PicturesHashtag
+    #         .where(picture_id: params[:id]))
 
 
-    @hashtags_id = @hashtags_id
+    # @hashtags_id = @hashtags_id
 
-    @del = PicturesHashtag.where(picture_id: params[:id])
+    # @del = PicturesHashtag.where(picture_id: params[:id])
     #@id = @del.pluck(picture_id)
   end
 end
