@@ -1,9 +1,19 @@
 <h1>picture/show</h1>
 <div class="row justify-content-between m-0">
   <div style="" class="container text-center ">
-    <%= link_to "index", pictures_path(:anchor => "pic#{@picture.id - 10}"), class: "btn" %>
-    <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
-    <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
+    <%= link_to "index", pictures_path, class: "btn" %>
+    <% if @picture.id > 1 %>
+      <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
+    <% else %>
+      <div id="last" class="btn"><%= "last"%></div>
+
+      <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
+    <% end %>
+    <% if @picture.id < @pictures_count %>
+      <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
+    <% else %>
+      <div id="last" class="btn"><%= "last"%></div>
+    <% end %>
   </div>
   <div style="" class="col-sm-8">
     <% if current_user.id === 1 %>
@@ -25,20 +35,30 @@
     <li>Image ID: <%= @picture.id %></li>
     <% counter = 0 %>
     <% @hashtags.each do |hashtag| %>
+
+    <% hashtag.id %>
       <div class="button">
-      <div><%= hashtag.id %></div>
+        <div><%= hashtag.id %></div>
         <div><%= hashtag.name %></div>
-        <div><%= @del.pluck("id")[counter] %></div>
-        <div class="button-del">X</div>
+        <div><%#= @del.pluck("id")[counter] %></div>
+        <div class="button-del"><%= link_to "X", picturehash_path(@hashtags_id)  %></div>
         <% counter += 1 %>
       </div>
     <% end %>
     <br>
     <br>
     <ol>
-      <li><%= @hashtags.pluck("name") %></li>
-      <li><%= @del.pluck("hashtag_id") %></li>
-      <li><%= @del.pluck("id") %></li>
+      <li id="1."><%= @hashtags.pluck("name") %></li>
+      <li id="2."><%= @del.pluck("hashtag_id") %></li>
+      <li id="3."><%= @hashtags_id.pluck("id") %></li>
+      <li id="4."><%= @hashtags_id.pluck("hashtag_id") %></li>
+      <li id="5."><%= @hashtags_id.pluck("picture_id") %></li>
+      <li id="6."><%= @del %></li>
+      <li id="7."><%= @del.inspect %></li>
+      <li id="8."><%= @del %></li>
+      <li id="9."><%= SecureRandom.uuid %></li>
+      <li id="10."><%= SecureRandom.urlsafe_base64 %></li>
+      <li id="11."><%= @pictures_count %></li>
     </ol>
   </div>
 </div>

@@ -1,3 +1,30 @@
+<div class="container">
+  <div class="row">
+    <% @pictures.take(5).each do |picture| %>
+      <div class="col-sm m-3 text-center">
+        <%#= link_to image_tag(picture.variant(resize_to_limit: [100, 100])), picture_path(picture) %>
+        <br>
+        <div id="pic<%= picture.id %>"><%= link_to picture.id, picture_path(picture) %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% 5.times { %><br>
+<% } %>
+<%= "===========================================" %>
+<br>
+
+
+<%= "===========================================" %>
+<%= "===========================================" %>
+<%= "===========================================" %>
+
+
+
+
+
+
+
 <%# @pictures.take(1).each do |pic| %>
   <%#= "===========================================" %>
   <%# pic.user.pictures.each do |aa| %>

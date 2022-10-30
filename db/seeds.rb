@@ -12,8 +12,8 @@
 all_start = Time.now
 
 def clear_storage
-  require 'fileutils'
-  FileUtils.rm_rf('storage/.')
+  require "fileutils"
+  FileUtils.rm_rf("storage/.")
 end
 
 def elapsed_time(start_time, end_time, name)
@@ -25,6 +25,7 @@ def elapsed_time(start_time, end_time, name)
     puts "#{elapsed.round(2)} seconds to #{name}"
   end
 end
+
 ##################################################
 # read CSV
 unless defined?(picture)
@@ -52,11 +53,22 @@ unless ActiveStorage::Blob.first
 
   pfad = Dir["/home/conrad/workbench/Datenbank.Esche.Sammlung/docker-compose-lamp/www/sl_Esche/M/**/*.jpg"]
 
+  # steps = []
+
+  # (200..5000).step(200) do |x|
+  #   steps << x
+  # end
+
   counter = 1
-  pfad.take(500).each do |row|
+  pfad.take(1000).each do |row|
     User.first.pictures.attach(io: File.open(row), filename: "%05d" % counter + ".jpg")
     counter += 1
-    # User.first.pictures.attach(io: File.open(row), filename: "u1 img_01")
+    # puts counter
+    # if steps.include?(counter)
+    #   sleep 5
+    #   puts ActiveStorage::Blob.count
+    #   sleep 10
+    # end
   end
 
   import_end = Time.now
@@ -93,7 +105,8 @@ unless PicturesHashtag.first
   ph_start = Time.now
   puts "\ncreate PicturesHashtag"
   CSV.foreach(pic_hash, headers: :first_row) do |row|
-    PicturesHashtag.create(id: row[0], hashtag_id: row[1], picture_id: row[2])
+    PicturesHashtag.create(hashtag_id: row[1], picture_id: row[2])
+    # PicturesHashtag.create(id: row[0], hashtag_id: row[1], picture_id: row[2])
   end
   ph_end = Time.now
   elapsed_time(ph_start, ph_end, "feed Pictures_Hashtag joins table to DB")
