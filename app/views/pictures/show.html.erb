@@ -8,7 +8,7 @@
       <div id="last" class="btn"><%= "last"%></div>
       <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
     <% end %>
-    <% if @picture.id < @pictures_count %>
+    <% if @picture.id < $pictures_count %>
       <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
     <% else %>
       <div id="last" class="btn"><%= "last"%></div>
@@ -32,11 +32,22 @@
       </div>
     <% end %>
     <li>Image ID: <%= @picture.id %></li>
-    <% @hashtags.each do |hashtag| %>
+    <% @hashtags_set.each do |hashtag| %>
       <div class="button">
         <%= hashtag.hashtag.name %>
-        <%= link_to "X", picturehash_path(hashtag.id), class: "btn button-del"  %>
+        <%= link_to "X", picturehash_path(hashtag.id), class: "btn button-action button-del"  %>
       </div>
     <% end %>
+    <div>==============================</div>
+    <% @hashtags_xyz.each do |hashtag|%>
+      <div class="button">
+        <%= hashtag.name %>
+        (<%= hashtag.id %>)
+        <%#= link_to "+", picturehash_path(hashtag.id), class: "btn button-action button-add"  %>
+        <%= link_to "+", picturehashupdate_path({hashtag_id: hashtag.id, picture_id: @picture.id}), class: "btn button-action button-add"  %>
+        <%# button_to "+", { :contoller=>'picturehashupdate_path', :action=>'update', hashtag_id: 312, picture_id: 53}, :method => :put %>
+      </div>
+    <% end %>
+    <div><%#= @hashtags_xyz %></div>
   </div>
 </div>

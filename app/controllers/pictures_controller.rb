@@ -4,41 +4,24 @@ class PicturesController < ApplicationController
   Pagy::DEFAULT[:items] = 40
   Pagy::DEFAULT[:size]  = [8,8,8,8]
   # GET /pictures or /pictures.json
+  $pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
+
   def index
-    @pictures = ActiveStorage::Attachment
-                .where(record_type: "User")
-
+    @pictures = ActiveStorage::Attachment.where(record_type: "User")
     @pagy, @records = pagy(@pictures)
-
   end
 
   def show
-    @pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
-    @picture = ActiveStorage::Attachment.find(params[:id])
+    # @pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
+    # @picture = ActiveStorage::Attachment.find(params[:id])
+    @picture = ActiveStorage::Attachment.where(name: "pictures")
+    @picture = @picture.find(params[:id])
 
     @picture_info = Picture.find(params[:id])
-
-    # @hashtags = []
-    # @hashtags_id = @hashtags
-    @hashtags = PicturesHashtag.where(picture_id: @picture.id) # .each(&:hashtag) # .each do |hashtag|
-    #@hashtagss =
-
-      # hashtag.hashtag_id
-      # @hashtags << hashtag.hashtag_id
-    # end
-
-    # @hashtags_id = @hashtags_id.pluck("id")
-    # @hashtags = Hashtag.where(id: @hashtags)
-
-    # @hashtags_id = PicturesHashtag
-    #        .where(hashtag_id: @hashtags)
-    #        .and(PicturesHashtag
-    #         .where(picture_id: params[:id]))
+    @hashtags_set = PicturesHashtag.where(picture_id: params[:id])
 
 
-    # @hashtags_id = @hashtags_id
-
-    # @del = PicturesHashtag.where(picture_id: params[:id])
-    #@id = @del.pluck(picture_id)
+    @hashtags_xyz = Hashtag.all # .take(4)
+    @hashtags_have = PicturesHashtag.all.take(6)
   end
 end

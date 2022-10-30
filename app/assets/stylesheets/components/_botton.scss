@@ -21,7 +21,7 @@
   background: red;
 
 }
-.button-del {
+.button-action {
   display: inline-block;
   border-radius: 50%;
   font-size: 12px;
@@ -29,10 +29,14 @@
   margin: 1px 2px 2px 9px;
   background: #cccccc;
   padding: 0px 5px 0px 5px;
-
 }
+
 
 .button-del:hover {
   background: red;
+  cursor: grab;
+}
+.button-add:hover {
+  background: green;
   cursor: grab;
 }

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'picturehash/destroy/:id', to: 'picturehash#destroy', as: 'picturehash'
+  uuid = SecureRandom.uuid
+  get "hash-rm/:id", to: 'picturehash#destroy', as: 'picturehash'
+  get 'picturehash/update', to: 'picturehash#update', as: 'picturehashupdate'
+
+
   #resources :uploads
   resources :pictures, only: %i[index show]
   devise_for :users
