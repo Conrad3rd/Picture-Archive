@@ -9,7 +9,9 @@ class PicturehashController < ApplicationController
       @asdf << asd.picture_id
     end
 
-    @hashname = Hashtag.where(id: params[:id]).pluck("name")
+    @hashname = Hashtag.where(id: params[:id])
+    # @hashname = Hashtag.where(id: params[:id]).pluck("name")
+
     # @hashname = Hashtag.select(:name).where(id: params[:id])
 
     @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @asdf))
@@ -29,4 +31,5 @@ class PicturehashController < ApplicationController
     @add = PicturesHashtag.create(hashtag_id: params[:hashtag_id], picture_id: params[:picture_id])
     redirect_to picture_path(params[:picture_id]), notice: "Hashtag was successfully added."
   end
+
 end
