@@ -1,6 +1,17 @@
 class PicturehashController < ApplicationController
+  require "pagy/extras/bootstrap"
+  Pagy::DEFAULT[:items] = 40
+  Pagy::DEFAULT[:size] = [8, 8, 8, 8]
+
   def index
-    @hashtags_have = PicturesHashtag.all.take(6)
+    @asdf = []
+    PicturesHashtag.where(hashtag_id: params[:id]).each do |asd|
+      @asdf << asd.picture_id
+    end
+
+    @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @asdf))
+    @pagy, @records = pagy(@pictures)
+    @pictures_count = @pictures.count
   end
 
   def remove

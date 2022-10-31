@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'hash/index/:id', to: 'picturehash#index', as: 'picture_hash_index'
+  get 'hash/show/:id', to: 'picturehash#show', as: 'picture_hash_show'
   get "hash/remove/:id", to: 'picturehash#remove', as: 'picture_hash_remove'
   get 'hash/add', to: 'picturehash#add', as: 'picture_hash_add'
 
