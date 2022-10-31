@@ -51,37 +51,22 @@
         <%# button_to "+", { :contoller=>'picturehashupdate_path', :action=>'update', hashtag_id: 312, picture_id: 53}, :method => :put %>
       </div>
     <% end %>
-    <%#== pagy_bootstrap_nav(params[:all_hashs]) %>
-    <div><%#= params[:hash_id].present? %></div>
     <br>
-    <br>
-    <br>
-    <% if params[:hash_id] %>
-      <div>yes <%= params[:hash_id] %></div>
-      <%= link_to "next", show_hashs_path(id: params[:id], hash_id: params[:hash_id])  %>
-    <% else %>
-      <div>no <%= params[:hash_id] %></div>
-    <% end %>
-    <%#= @pic_list %>
-
-
-<% def next_element(elements, current_id) %>
-  <% elements.each_with_index {|element, index| %>
+    <% def next_element(elements, current_id) %>
+    <% elements.each_with_index {|element, index| %>
     <% element = element.to_s.to_i %>
     <% current_id = current_id.to_i %>
     <% if element == current_id %>
-      <div><%= "index: #{index} element: #{element} current_id: #{current_id}" %></div>
+      <%= @pic_list[index-1] %>
       <%= link_to "prev", show_hashs_path(id: @pic_list[index-1], hash_id: params[:hash_id])  %>
       <%= link_to "next", show_hashs_path(id: @pic_list[index+1], hash_id: params[:hash_id])  %>
       <%= @pic_list[index+1] %>
     <% end %>
-  <% } %>
-<% end %>
-<br>
-<br>
-<br>
-<div><% next_element(@pic_list, params[:id]) %></div>
-
-
-  </div>
+    <% } %>
+  <% end %>
+  <br>
+  <br>
+  <div><% next_element(@pic_list, params[:id]) %></div>
+  <br>
+</div>
 </div>
