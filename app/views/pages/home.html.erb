@@ -1,3 +1,13 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 <%= link_to "Pictures/index", pictures_path %>
+
+
+<div><%= pluralize 4, "House" %></div>
+<div><%= I18n.t 'hello' %></div>
+<div><%= I18n.t 'Hallo' %></div>
+<div><%= I18n.t 'Hallo Kitty' %></div>
+<div><%= I18n.l Time.now %></div>
+
+
+<% 2.times { %><br><% } %>

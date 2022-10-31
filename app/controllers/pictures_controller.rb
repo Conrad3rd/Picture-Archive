@@ -20,7 +20,10 @@ class PicturesController < ApplicationController
     @picture_info = Picture.find(params[:id])
     @hashtags_set = PicturesHashtag.where(picture_id: params[:id])
 
-    @hashtags_add = Hashtag.where(name: ["Myanmar", "Markt", "Brücke", "Wasser"])
+    # @hashtags_add = Hashtag.where(name: %i[Myanmar Markt Brücke Wasser unscharf Farbe Yangon Text Tier])
+    # @hashtags_add = Hashtag.where(name: ["Myanmar", "Markt", "Brücke", "Wasser", "unscharf", "Farbe"])
+    @hashtags_add = Hashtag.all
 
+    @size = ActiveStorage::Blob.find(params[:id])
   end
 end

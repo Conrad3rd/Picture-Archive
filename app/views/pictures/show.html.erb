@@ -32,6 +32,8 @@
       </div>
     <% end %>
     <li>Image ID: <%= @picture.id %></li>
+    <li><%= @size.metadata["width"] %>x<%= @size.metadata["height"] %> px</li>
+    <li><%= (@size.byte_size / 1000.0).ceil(2) %> kb</li>
     <% @hashtags_set.each do |hashtag| %>
       <div class="button">
         <%#= hashtag.hashtag.name %>
@@ -40,7 +42,7 @@
         <%= link_to "X", picture_hash_remove_path(hashtag.id), class: "btn button-action button-del"  %>
       </div>
     <% end %>
-    <div>==============================</div>
+    <hr>
     <% @hashtags_add.each do |hashtag|%>
       <div class="button">
         <%= link_to hashtag.name, picture_hash_index_path(hashtag.id), class: "btn p-0" %>
@@ -49,6 +51,5 @@
         <%# button_to "+", { :contoller=>'picturehashupdate_path', :action=>'update', hashtag_id: 312, picture_id: 53}, :method => :put %>
       </div>
     <% end %>
-    <div><%#= @hashtags_xyz %></div>
   </div>
 </div>

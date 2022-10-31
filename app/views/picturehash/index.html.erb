@@ -1,4 +1,4 @@
-<h1>Picturehash#index</h1>
+<h1>Picture-Hash#index <%= pluralize @pictures_count, @hashname[0] %></h1>
 <p>Find me in app/views/picturehash/index.html.erb</p>
 <div><%#= @asdf %></div>
 <div>Available: <%= @asdf.count %></div>
@@ -9,6 +9,7 @@
 <% else %>
   <% pic = @pictures %>
 <% end %>
+
 <%= "===========================================" %>
 <% 2.times { %><br>
 <% } %>

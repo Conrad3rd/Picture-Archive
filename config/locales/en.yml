@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "hello"
+  Hallo: "Hello"
+  "Hallo Kitty": "hello world"
+
+
+
+de:
+  hello: "Hallo"

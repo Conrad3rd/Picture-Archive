@@ -9,6 +9,9 @@ class PicturehashController < ApplicationController
       @asdf << asd.picture_id
     end
 
+    @hashname = Hashtag.where(id: params[:id]).pluck("name")
+    # @hashname = Hashtag.select(:name).where(id: params[:id])
+
     @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @asdf))
     @pagy, @records = pagy(@pictures)
     @pictures_count = @pictures.count
