@@ -4,9 +4,9 @@ class PicturehashController < ApplicationController
   Pagy::DEFAULT[:size] = [8, 8, 8, 8]
 
   def index
-    @asdf = []
+    @existing_pics = []
     PicturesHashtag.where(hashtag_id: params[:id]).each do |asd|
-      @asdf << asd.picture_id
+      @existing_pics << asd.picture_id
     end
 
     @hashname = Hashtag.where(id: params[:id])
@@ -14,7 +14,7 @@ class PicturehashController < ApplicationController
 
     # @hashname = Hashtag.select(:name).where(id: params[:id])
 
-    @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @asdf))
+    @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @existing_pics))
     @pagy, @records = pagy(@pictures)
     @pictures_count = @pictures.count
   end

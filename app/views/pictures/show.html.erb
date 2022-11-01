@@ -1,19 +1,26 @@
 <h1>picture/show</h1>
 <div class="row justify-content-between m-0">
+
+  <%# navigation %>
   <div style="" class="container text-center ">
     <%= link_to "index", pictures_path, class: "btn" %>
+
     <% if @picture.id > 1 %>
       <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
     <% else %>
       <div id="last" class="btn"><%= "last"%></div>
       <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
     <% end %>
+
     <% if @picture.id < $pictures_count %>
       <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
     <% else %>
       <div id="last" class="btn"><%= "last"%></div>
     <% end %>
+
   </div>
+
+  <%# pic section %>
   <div style="" class="col-sm-8">
     <% if current_user.id === 1 %>
       <div style="" class="heightpic">
@@ -25,7 +32,44 @@
       <%#= image_tag @picture, class: "showpic"  %>
     <% end %>
   </div>
+
+  <%# info section %>
   <div style="" class="InfoCard col-sm-4">
+
+
+
+    <% @pic_list.each_with_index {|element, index| %>
+      <% element = element.to_i %>
+      <% current_id = params[:id].to_i %>
+      <% if element == current_id %>
+        <% if index > 0 %>
+          <%= link_to "prev", show_hashs_path(id: @pic_list[index-1], hash_id: params[:hash_id])  %>
+        <% else %>
+          <%= "prev" %>
+        <% end %>
+
+        <% if index < @hashs.count-1 %>
+          <%= link_to "next", show_hashs_path(id: @pic_list[index+1], hash_id: params[:hash_id])  %>
+        <% else %>
+          <%= "next" %>
+        <% end %>
+      <% end %>
+    <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <% if current_user.id === 1 %>
       <div id="FilePath">
         <li id="PicPath">Path: <%= @picture_info.path %></li>
@@ -52,21 +96,7 @@
       </div>
     <% end %>
     <br>
-    <% def next_element(elements, current_id) %>
-    <% elements.each_with_index {|element, index| %>
-    <% element = element.to_s.to_i %>
-    <% current_id = current_id.to_i %>
-    <% if element == current_id %>
-      <%= @pic_list[index-1] %>
-      <%= link_to "prev", show_hashs_path(id: @pic_list[index-1], hash_id: params[:hash_id])  %>
-      <%= link_to "next", show_hashs_path(id: @pic_list[index+1], hash_id: params[:hash_id])  %>
-      <%= @pic_list[index+1] %>
-    <% end %>
-    <% } %>
-  <% end %>
-  <br>
-  <br>
-  <div><% next_element(@pic_list, params[:id]) %></div>
-  <br>
-</div>
+    
+    <br>
+  </div>
 </div>

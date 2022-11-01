@@ -13,6 +13,9 @@ class PicturesController < ApplicationController
   end
 
   def show
+
+
+
     # @pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
     # @picture = ActiveStorage::Attachment.find(params[:id])
     @picture = ActiveStorage::Attachment.where(name: "pictures")
@@ -27,13 +30,19 @@ class PicturesController < ApplicationController
     @size = ActiveStorage::Blob.find(params[:id])
 
     # params[:hash_id]
-
+    @existing_pics = []
+    PicturesHashtag.where(hashtag_id: params[:hash_id]).each do |asd|
+      @existing_pics << asd.picture_id
+    end
     # ActiveStorage::Attachment.where(record_type: "User")
     @hash = PicturesHashtag.where(hashtag_id: params[:hash_id])
+    @hashs = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @existing_pics))
+
+
 
     @pic_list = []
-    @hash.each do |aa|
-      @pic_list << aa.picture_id
+    @hashs.each do |aa|
+      @pic_list << aa.id
     end
 
     @pic_list
