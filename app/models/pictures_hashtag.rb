@@ -7,7 +7,7 @@ class PicturesHashtag < ApplicationRecord
   # belongs_to :user
 
   # validates :hashtag_id, :picture_id, uniqueness: true
-  validates :hashtag_id, uniqueness: { scope: :picture_id, notice: "Hashtag was successfully added." }#, acceptance: { message: 'must be abided' }
+  validates :hashtag_id, uniqueness: { scope: :picture_id }
 
 
 end
