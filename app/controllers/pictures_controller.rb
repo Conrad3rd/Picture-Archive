@@ -15,17 +15,10 @@ class PicturesController < ApplicationController
   def show
 
 
-    if params[:query].present?
-      @hashs_find = Hashtag.where(name: params[:query])
-    else
-      @hashs_find = Hashtag.all
-    end
 
 
-    @hashs_find_list = []
-    @hashs_find.each do |hash_find|
-      @hashs_find_list << hash_find.name
-    end
+
+
 
 
     # @pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
@@ -55,6 +48,18 @@ class PicturesController < ApplicationController
 
 
     @hashname = Hashtag.where(id: params[:hash_id])
+
+    @find_hash = Hashtag.all
+
+ 
+
+
+
+
+
+
+
+
 
     @pic_list = []
     @hashs.each do |aa|

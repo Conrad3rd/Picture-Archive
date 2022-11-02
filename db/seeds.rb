@@ -51,7 +51,17 @@ unless ActiveStorage::Blob.first
   clear_storage
   puts "\nimport jpg"
 
-  pfad = Dir["/home/conrad/workbench/Datenbank.Esche.Sammlung/docker-compose-lamp/www/sl_Esche/M/**/*.jpg"]
+  path = Dir["/home/conrad/workbench/Datenbank.Esche.Sammlung/docker-compose-lamp/www/sl_Esche/L/**/*.jpg"]
+
+  # @user = User.first
+  # path.take(1000).each_with_index do |row, idx|
+  #   File.open(row) do |file|
+  #     @user.pictures.attach(io: file, filename: "%05d" % (idx + 1) + ".jpg")
+  #   end
+  # end
+
+
+
 
   # steps = []
 
@@ -60,7 +70,7 @@ unless ActiveStorage::Blob.first
   # end
 
   counter = 1
-  pfad.take(500).each do |row|
+  path.take(50).each do |row|
     User.first.pictures.attach(io: File.open(row), filename: "%05d" % counter + ".jpg")
     counter += 1
     # puts counter
@@ -74,6 +84,7 @@ unless ActiveStorage::Blob.first
   import_end = Time.now
   elapsed_time(import_start, import_end, "import jpg to ActiveStorage")
 end
+
 ##################################################
 # add Picture (17009) to table
 unless Picture.first
