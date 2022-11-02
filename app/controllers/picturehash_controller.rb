@@ -10,9 +10,6 @@ class PicturehashController < ApplicationController
     end
 
     @hashname = Hashtag.where(id: params[:id])
-    # @hashname = Hashtag.where(id: params[:id]).pluck("name")
-
-    # @hashname = Hashtag.select(:name).where(id: params[:id])
 
     @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @existing_pics))
     @pagy, @records = pagy(@pictures)
@@ -28,12 +25,20 @@ class PicturehashController < ApplicationController
   end
 
   def add
-    if params[:form] != "true"
-      @add = PicturesHashtag.create(hashtag_id: params[:hashtag_id], picture_id: params[:picture_id])
-    else
+    if params[:form] == "true"
       @hash_id = Hashtag.where(name: params[:hashtag_id]).ids
+      if @hash_id[0].nil?
+        Hashtag.create(name: params[:hashtag_id])
+        @hash_id = Hashtag.where(name: params[:hashtag_id]).ids
+        # hashtag_id = params[:hashtag_id]
+        # puts "+++++++++++++++++++++++++++++++++++++"
+      end
+      # puts "\n#########################################"
+      # puts "#{@hash_id[0].nil?} : #{@hash_id[0]}"
+      # puts "#########################################\n\n"
       @add = PicturesHashtag.create(hashtag_id: @hash_id[0], picture_id: params[:picture_id])
-
+    else
+      @add = PicturesHashtag.create(hashtag_id: params[:hashtag_id], picture_id: params[:picture_id])
     end
 
     if @add.save
@@ -41,10 +46,5 @@ class PicturehashController < ApplicationController
     else
       redirect_to picture_path(params[:picture_id]), alert: "Hashtag already added."
     end
-
-
-
-
   end
-
 end
