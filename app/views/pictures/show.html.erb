@@ -55,19 +55,9 @@
         <% end %>
       <% end %>
     <% } %>
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <% if @hashname[0] %>
+      <li><%= link_to "#{@hashname[0].name}", picture_hash_index_path(@hashname[0].id) %></li>
+    <% end %>
 
 
     <% if current_user.id === 1 %>
@@ -94,9 +84,25 @@
         <%= link_to "+", picture_hash_add_path({hashtag_id: hashtag.id, picture_id: @picture.id}), class: "btn button-action button-add"  %>
         <%# button_to "+", { :contoller=>'picturehashupdate_path', :action=>'update', hashtag_id: 312, picture_id: 53}, :method => :put %>
       </div>
+
+
+
+<%= form_with, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a movie"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+
+
+
+
     <% end %>
     <br>
-    
+
     <br>
   </div>
 </div>
