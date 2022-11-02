@@ -28,14 +28,21 @@ class PicturehashController < ApplicationController
   end
 
   def add
-    @add = PicturesHashtag.create(hashtag_id: params[:hashtag_id], picture_id: params[:picture_id])
-    #redirect_to picture_path(params[:picture_id]) , notice: "Hashtag was successfully added."
+    if params[:form] != "true"
+      @add = PicturesHashtag.create(hashtag_id: params[:hashtag_id], picture_id: params[:picture_id])
+    else
+      @hash_id = Hashtag.where(name: params[:hashtag_id]).ids
+      @add = PicturesHashtag.create(hashtag_id: @hash_id[0], picture_id: params[:picture_id])
+
+    end
 
     if @add.save
       redirect_to picture_path(params[:picture_id]), notice: "Hashtag was successfully added."
     else
       redirect_to picture_path(params[:picture_id]), alert: "Hashtag already added."
     end
+
+
 
 
   end

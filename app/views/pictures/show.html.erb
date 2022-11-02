@@ -16,10 +16,11 @@
     <% end %>
   </div>
   <%# pic section %>
-  <div style="" class="col-sm-8">
+  <div style="" class="viewer col-sm-8">
     <% if current_user.id === 1 %>
       <div style="" class="heightpic">
-        <%= image_tag @picture, class: "showpic" %>
+        <%= image_tag @picture.variant(resize_to_limit: [750, 750]), class: "showpic"  %>
+        <%#= image_tag @picture, class: "showpic" %>
       </div>
     <% else %>
       <%#= image_tag @picture, width: "600px" %>
@@ -74,16 +75,16 @@
       </div>
     <% end %>
 
-    <form action='<%= picture_hash_add_path({hashtag_id: 479, picture_id: 41}) %>' method='get'>
-      Hashtag: <input type='text' name='hash_name' list='hash_list'>
-      <datalist id='hash_list'>
-        <% @find_hash.each do |hash| %>
-          <option value='<%= hash.name %>'>
-        <% end %>
-        </datalist>
-        <input type='hidden' name='hashtag_id' value='479' />
-        <input type='hidden' name='picture_id' value='41' />
-        <input type='submit' value='add'>
+      <form action='<%= picture_hash_add_path %>' method='get'>
+        Hashtag: <input type='text' name='hashtag_id' list='hash_list'>
+        <datalist id='hash_list'>
+          <% @find_hash.each do |hash| %>
+            <option value='<%= hash.name %>'>
+          <% end %>
+          </datalist>
+          <input type='hidden' name='picture_id' value='<%= @picture.id %>' />
+          <input type='hidden' name='form' value='true' />
+          <input type='submit' value='add'>
       </form>
     </div>
   </div>

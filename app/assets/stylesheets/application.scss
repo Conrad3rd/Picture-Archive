@@ -12,6 +12,10 @@
 @import "pages/index";
 @import "responsiv/index";
 
+.viewer {
+  background: #333333;
+}
+
 #last {
   color: gray;
   cursor: not-allowed;
@@ -31,7 +35,8 @@
 }
 
 .InfoCard {
-  // background: #b3ffc7;
+  background: #cdcdcd;
+
 }
 
 .showpic {
