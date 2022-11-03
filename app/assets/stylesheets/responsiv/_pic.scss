@@ -87,3 +87,12 @@
     height: 85vh;
   }
 }
+
+@media screen and (min-height: 750px) {
+  body {
+    // background-color: #ebebbe;
+  }
+  .heightpic {
+    height: 88vh;
+  }
+}

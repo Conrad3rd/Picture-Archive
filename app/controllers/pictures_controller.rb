@@ -2,8 +2,8 @@ class PicturesController < ApplicationController
   # before_action :set_upload, only: %i[ show edit update destroy ]
   require "pagy/extras/bootstrap"
   Pagy::DEFAULT[:items] = 40
-  Pagy::DEFAULT[:size] = [1, 1, 1, 1]
-  # Pagy::DEFAULT[:size] = [8, 8, 8, 8]
+  # Pagy::DEFAULT[:size] = [1, 1, 1, 1]
+  Pagy::DEFAULT[:size] = [8, 8, 8, 8]
   # GET /pictures or /pictures.json
   $pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
 
@@ -29,7 +29,7 @@ class PicturesController < ApplicationController
     @picture_info = Picture.find(params[:id])
     @hashtags_set = PicturesHashtag.where(picture_id: params[:id])
 
-    @hashtags_add = Hashtag.where(name: ["Pferd", "Was ist das?", "Myanmar", "Markt", "Brücke", "Wasser", "unscharf", "Farbe", "Yangon", "Text", "Tier", "SW", "Unabhängigkeitsdenkmal"])
+    @hashtags_add = Hashtag.where(name: ["nicht Myanmar", "Pferd", "Was ist das?", "Myanmar", "Markt", "Brücke", "Wasser", "unscharf", "Farbe", "Yangon", "Text", "Tier", "SW", "Unabhängigkeitsdenkmal"])
     # @hashtags_add = Hashtag.all
 
     @size = ActiveStorage::Blob.find(params[:id])

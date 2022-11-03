@@ -12,6 +12,11 @@
 @import "pages/index";
 @import "responsiv/index";
 
+ul.pagination {
+  flex-wrap: wrap;
+}
+
+
 
 html, body {
   height: 100%;
