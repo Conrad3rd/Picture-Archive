@@ -1,9 +1,54 @@
-@media screen and (max-height: 549px) {
+@media screen and (max-height: 299px) {
   body {
     // background-color: #1abcff;
   }
   .heightpic {
-    height: 73vh;
+    height: 65vh;
+  }
+}
+
+@media screen and (min-height: 300px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 65vh;
+  }
+}
+
+@media screen and (min-height: 350px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 70vh;
+  }
+}
+
+@media screen and (min-height: 400px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 74vh;
+  }
+}
+
+@media screen and (min-height: 450px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 76vh;
+  }
+}
+
+@media screen and (min-height: 500px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 79vh;
   }
 }
 
@@ -12,7 +57,25 @@
     // background-color: #d2fbd2;
   }
   .heightpic {
-    height: 82vh;
+    height: 81vh;
+  }
+}
+
+@media screen and (min-height: 600px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 83vh;
+  }
+}
+
+@media screen and (min-height: 650px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 84vh;
   }
 }
 
@@ -21,6 +84,6 @@
     // background-color: #ebebbe;
   }
   .heightpic {
-    height: 86vh;
+    height: 85vh;
   }
 }

@@ -13,8 +13,8 @@
 @import "responsiv/index";
 
 
-body {
-  overflow: hidden;
+html, body {
+  height: 100%;
 }
 
 .viewer {
@@ -33,7 +33,7 @@ body {
 }
 
 .showpage {
-  height: 100vh;
+  // height: 100vh;
   // display: flex;
   // flex-direction: row;
   // justify-content: space-evenly;

@@ -1,22 +1,20 @@
 <%# <h1>picture/show</h1> %>
-  <!-- navigation -->
-  <div style="" class="container text-center ">
-    <%= link_to "index", pictures_path, class: "btn" %>
-    <% if @picture.id > 1 %>
-      <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
-    <% else %>
-      <div id="last" class="btn"><%= "last"%></div>
-      <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
-    <% end %>
-    <% if @picture.id < $pictures_count %>
-      <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
-    <% else %>
-      <div id="last" class="btn"><%= "last"%></div>
-    <% end %>
-  </div>
-
+<!-- navigation -->
+<div style="" class="show-all container text-center ">
+  <%= link_to "index", pictures_path, class: "btn" %>
+  <% if @picture.id > 1 %>
+    <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
+  <% else %>
+    <div id="last" class="btn"><%= "last"%></div>
+    <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
+  <% end %>
+  <% if @picture.id < $pictures_count %>
+    <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
+  <% else %>
+    <div id="last" class="btn"><%= "last"%></div>
+  <% end %>
+</div>
 <div class="showpage row justify-content-between m-0">
-
   <!-- pic sectiontion -->
   <div style="" class="viewer col-sm-8">
     <% if current_user.id === 1 %>
@@ -26,33 +24,33 @@
       </div>
     <% else %>
       <%#= image_tag @picture, width: "600px" %>
-      <%= image_tag @picture.variant(resize_to_limit: [300, 300]), class: "showpic"  %>
+      <%= image_tag @picture.variant(resize_to_limit: [400, 400]), class: "showpic"  %>
       <%#= image_tag @picture, class: "showpic"  %>
     <% end %>
   </div>
-
   <!--  info section  -->
-  <div style="" class="InfoCard col-sm-4">
+  <div style="" class="heightpic InfoCard col-sm-4">
+    <!-- hash navigation -->
     <% @pic_list.each_with_index {|element, index| %>
-      <% element = element.to_i %>
-      <% current_id = params[:id].to_i %>
-      <% if element == current_id %>
-        <% if index > 0 %>
-          <%= link_to "prev", show_hashs_path(id: @pic_list[index-1], hash_id: params[:hash_id])  %>
-        <% else %>
-          <%= "prev" %>
-        <% end %>
-        <% if index < @hashs.count-1 %>
-          <%= link_to "next", show_hashs_path(id: @pic_list[index+1], hash_id: params[:hash_id])  %>
-        <% else %>
-          <%= "next" %>
-        <% end %>
-        <% if @hashname[0] %>
-          - from: <%= link_to "#{@hashname[0].name}", picture_hash_index_path(@hashname[0].id) %> Hash
-        <% end %>
+    <% element = element.to_i %>
+    <% current_id = params[:id].to_i %>
+    <% if element == current_id %>
+      <% if index > 0 %>
+        <%= link_to "prev", show_hashs_path(id: @pic_list[index-1], hash_id: params[:hash_id])  %>
+      <% else %>
+        <%= "prev" %>
       <% end %>
+      <% if index < @hashs.count-1 %>
+        <%= link_to "next", show_hashs_path(id: @pic_list[index+1], hash_id: params[:hash_id])  %>
+      <% else %>
+        <%= "next" %>
+      <% end %>
+      <% if @hashname[0] %>
+        - from: <%= link_to "#{@hashname[0].name}", picture_hash_index_path(@hashname[0].id) %> Hash
+      <% end %>
+    <% end %>
     <% } %>
-
+    <!-- file info -->
     <% if current_user.id === 1 %>
       <div id="FilePath">
         <li id="PicPath">Path: <%= @picture_info.path %></li>
@@ -61,9 +59,17 @@
     <li>Image ID: <%= @picture.id %></li>
     <li><%= @size.metadata["width"] %>x<%= @size.metadata["height"] %> px</li>
     <li><%= (@size.byte_size / 1000.0).ceil(2) %> kb</li>
-
-
-
+    <hr>
+    <% @hashtags_set.each do |hashtag| %>
+      <div class="button">
+        <%#= hashtag.hashtag.name %>
+        <%#= hashtag.hashtag.id %>
+        <%= link_to hashtag.hashtag.name, picture_hash_index_path(hashtag.hashtag.id), class: "btn p-0" %>
+        <%= link_to "X", picture_hash_remove_path(hashtag.id), class: "btn button-action button-del"  %>
+      </div>
+    <% end %>
+    <hr>
+    <!-- add custom hash -->
     <form action='<%= picture_hash_add_path %>' method='get'>
       Hashtag: <input type='text' name='hashtag_id' list='hash_list'>
       <datalist id='hash_list'>
@@ -75,20 +81,7 @@
         <input type='hidden' name='form' value='true' />
         <input type='submit' value='add'>
       </form>
-
-
-    <hr>
-
-    <% @hashtags_set.each do |hashtag| %>
-      <div class="button">
-        <%#= hashtag.hashtag.name %>
-        <%#= hashtag.hashtag.id %>
-        <%= link_to hashtag.hashtag.name, picture_hash_index_path(hashtag.hashtag.id), class: "btn p-0" %>
-        <%= link_to "X", picture_hash_remove_path(hashtag.id), class: "btn button-action button-del"  %>
-      </div>
-    <% end %>
-
-      <hr>
+      <!-- add default hash -->
       <% @hashtags_add.each do |hashtag|%>
         <div class="button">
           <%= link_to hashtag.name, picture_hash_index_path(hashtag.id), class: "btn p-0" %>
@@ -98,4 +91,4 @@
         </div>
       <% end %>
     </div>
-</div>
+  </div>
