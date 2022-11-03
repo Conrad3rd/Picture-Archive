@@ -1,15 +1,66 @@
 class PicturesController < ApplicationController
   # before_action :set_upload, only: %i[ show edit update destroy ]
   require "pagy/extras/bootstrap"
-  Pagy::DEFAULT[:items] = 40
+  Pagy::DEFAULT[:items] = 50
   # Pagy::DEFAULT[:size] = [1, 1, 1, 1]
   Pagy::DEFAULT[:size] = [8, 8, 8, 8]
   # GET /pictures or /pictures.json
   $pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
 
   def index
-    @pictures = ActiveStorage::Attachment.where(record_type: "User")
+    # @pictures = ActiveStorage::Attachment.where(record_type: "User")
+
+    if params[:query].present?
+
+      @hash_id = Hashtag.where(name: params[:query])
+
+      @existing_pics = []
+      PicturesHashtag.where(hashtag_id: @hash_id).each do |asd|
+        @existing_pics << asd.picture_id
+      end
+
+      @pictures = ActiveStorage::Attachment
+                  .where(record_type: "User")
+                  .and(ActiveStorage::Attachment.where(blob_id: @existing_pics))
+
+    else
+      @pictures = ActiveStorage::Attachment.where(record_type: "User")
+    end
     @pagy, @records = pagy(@pictures)
+
+    # if @pictures
+    #   #@pictures = ActiveStorage::Attachment.where(record_type: "User")
+    #   @pagy, @records = pagy(@pictures)
+    # else
+    #   @pictures = ActiveStorage::Attachment.where(record_type: "User")
+    #   @pagy, @records = pagy(@pictures)
+    # end
+
+    # unless @pictures
+    #   @pictures = ActiveStorage::Attachment.where(record_type: "User")
+    # end
+
+
+
+
+
+
+
+
+
+
+
+
+    # ActiveStorage::Attachment.where(record_type: "User")
+    # @hash = PicturesHashtag.where(hashtag_id: params[:hash_id])
+
+
+
+
+
+
+
+
   end
 
   def show

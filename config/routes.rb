@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #resources :movies, only: :index
   get 'hash/show_hashs/:id', to: 'pictures#show', as: 'show_hashs'
 
   get 'hash/index/:id', to: 'picturehash#index', as: 'picture_hash_index'

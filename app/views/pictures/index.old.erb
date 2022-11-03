@@ -1,3 +1,26 @@
+<% 2.times { %><br><% } %>
+<div class="container">
+  <div class="row">
+    <% @records.each do |aaa| %>
+      <div class="col-sm m-1 text-center">
+        <div><%= link_to image_tag(aaa.variant(resize_to_limit: [100, 100])), picture_path(aaa) %></div>
+        <div><%= link_to aaa.id, picture_path(aaa) %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">
   <div class="row">
     <% @pictures.take(5).each do |picture| %>
