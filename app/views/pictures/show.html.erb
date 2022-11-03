@@ -1,6 +1,5 @@
-<h1>picture/show</h1>
-<div class="row justify-content-between m-0">
-  <%# navigation %>
+<%# <h1>picture/show</h1> %>
+  <!-- navigation -->
   <div style="" class="container text-center ">
     <%= link_to "index", pictures_path, class: "btn" %>
     <% if @picture.id > 1 %>
@@ -15,11 +14,14 @@
       <div id="last" class="btn"><%= "last"%></div>
     <% end %>
   </div>
-  <%# pic section %>
+
+<div class="showpage row justify-content-between m-0">
+
+  <!-- pic sectiontion -->
   <div style="" class="viewer col-sm-8">
     <% if current_user.id === 1 %>
       <div style="" class="heightpic">
-        <%= image_tag @picture.variant(resize_to_limit: [750, 750]), class: "showpic"  %>
+        <%= image_tag @picture.variant(resize_to_limit: [1024, 1024]), class: "showpic"  %>
         <%#= image_tag @picture, class: "showpic" %>
       </div>
     <% else %>
@@ -28,7 +30,8 @@
       <%#= image_tag @picture, class: "showpic"  %>
     <% end %>
   </div>
-  <%# info section %>
+
+  <!--  info section  -->
   <div style="" class="InfoCard col-sm-4">
     <% @pic_list.each_with_index {|element, index| %>
       <% element = element.to_i %>
@@ -44,11 +47,12 @@
         <% else %>
           <%= "next" %>
         <% end %>
+        <% if @hashname[0] %>
+          - from: <%= link_to "#{@hashname[0].name}", picture_hash_index_path(@hashname[0].id) %> Hash
+        <% end %>
       <% end %>
     <% } %>
-    <% if @hashname[0] %>
-      <li><%= link_to "#{@hashname[0].name}", picture_hash_index_path(@hashname[0].id) %></li>
-    <% end %>
+
     <% if current_user.id === 1 %>
       <div id="FilePath">
         <li id="PicPath">Path: <%= @picture_info.path %></li>
@@ -94,4 +98,4 @@
         </div>
       <% end %>
     </div>
-  </div>
+</div>

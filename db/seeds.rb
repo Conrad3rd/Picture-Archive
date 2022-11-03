@@ -53,33 +53,24 @@ unless ActiveStorage::Blob.first
 
   path = Dir["/home/conrad/workbench/Datenbank.Esche.Sammlung/docker-compose-lamp/www/sl_Esche/L/**/*.jpg"]
 
-  # @user = User.first
-  # path.take(1000).each_with_index do |row, idx|
-  #   File.open(row) do |file|
-  #     @user.pictures.attach(io: file, filename: "%05d" % (idx + 1) + ".jpg")
-  #   end
-  # end
-
-
-
-
-  # steps = []
-
-  # (200..5000).step(200) do |x|
-  #   steps << x
-  # end
-
-  counter = 1
-  path.take(50).each do |row|
-    User.first.pictures.attach(io: File.open(row), filename: "%05d" % counter + ".jpg")
-    counter += 1
-    # puts counter
-    # if steps.include?(counter)
-    #   sleep 5
-    #   puts ActiveStorage::Blob.count
-    #   sleep 10
-    # end
+  @user = User.first
+  path.take(2000).each_with_index do |row, idx|
+    File.open(row) do |file|
+      @user.pictures.attach(io: file, filename: "%05d" % (idx + 1) + ".jpg")
+    end
   end
+
+  # counter = 1
+  # path.take(50).each do |row|
+  #   User.first.pictures.attach(io: File.open(row), filename: "%05d" % counter + ".jpg")
+  #   counter += 1
+  #   # puts counter
+  #   # if steps.include?(counter)
+  #   #   sleep 5
+  #   #   puts ActiveStorage::Blob.count
+  #   #   sleep 10
+  #   # end
+  # end
 
   import_end = Time.now
   elapsed_time(import_start, import_end, "import jpg to ActiveStorage")

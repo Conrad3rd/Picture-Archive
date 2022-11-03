@@ -12,6 +12,11 @@
 @import "pages/index";
 @import "responsiv/index";
 
+
+body {
+  overflow: hidden;
+}
+
 .viewer {
   background: #333333;
 }
@@ -28,10 +33,11 @@
 }
 
 .showpage {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: stretch;
+  height: 100vh;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-evenly;
+  // align-items: stretch;
 }
 
 .InfoCard {
@@ -59,55 +65,19 @@
   max-inline-size: fit-content;
 }
 
-@media screen and (max-height: 549px) {
-  body {
-    // background-color: #1abcff;
-  }
-  .heightpic {
-    height: 59vh;
-  }
-}
 
-@media screen and (min-height: 550px) {
-  body {
-    // background-color: #d2fbd2;
-  }
-  .heightpic {
-    height: 70vh;
-  }
-}
-
-@media screen and (min-height: 700px) {
-  body {
-    // background-color: #ebebbe;
-  }
-  .heightpic {
-    height: 76vh;
-  }
-}
 
 @media screen and (max-width: 575px) {
-  body {
-    background-color: #ff9f9f;
-  }
   .heightpic {
     height: unset;
+  }
+
+  body {
+    overflow: unset;
   }
 
   .InfoCard {
-    overflow: unset;
-    height: unset;
+    height: auto;
   }
 
-
-}
-
-@media screen and (max-width: 380px) {
-  body {
-    background-color: #1eff1a;
-  }
-  #LoginForm,
-  #EditForm {
-    padding: 24px;
-  }
 }

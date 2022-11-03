@@ -51,7 +51,7 @@ class PicturesController < ApplicationController
 
     @find_hash = Hashtag.all
 
- 
+
 
 
 

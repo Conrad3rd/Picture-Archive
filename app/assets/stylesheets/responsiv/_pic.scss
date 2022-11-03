@@ -1,0 +1,26 @@
+@media screen and (max-height: 549px) {
+  body {
+    // background-color: #1abcff;
+  }
+  .heightpic {
+    height: 73vh;
+  }
+}
+
+@media screen and (min-height: 550px) {
+  body {
+    // background-color: #d2fbd2;
+  }
+  .heightpic {
+    height: 82vh;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  body {
+    // background-color: #ebebbe;
+  }
+  .heightpic {
+    height: 86vh;
+  }
+}
