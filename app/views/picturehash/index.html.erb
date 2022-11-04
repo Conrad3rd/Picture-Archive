@@ -24,6 +24,7 @@
         <div><%= link_to image_tag(pic.variant(resize_to_limit: [100, 100])), show_hashs_path({id: pic, hash_id: @hashname[0].id}) %></div>
         <%#= link_to pic.id, picture_path(pic) %>
         <div><%= link_to pic.id, show_hashs_path({id: pic, hash_id: @hashname[0].id}) %></div>
+        <div><%= @hashname[0].id %></div>
       </div>
     <% end %>
   </div>

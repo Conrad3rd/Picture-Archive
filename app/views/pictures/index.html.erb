@@ -5,7 +5,9 @@
 <%#= form_with url: pictures_path, method: :get, class: "d-flex" do %>
 
 <% if @hash_id %>
-  <% path =  picture_hash_index_path(@hash_id[0].id)%>
+  <%# path =  picture_hash_index_path(@hash_id[0].id)%>
+  <%= hash_id = @hash_id[0].id %>
+  <% path =  pictures_path %>
 <% else %>
   <% path =  pictures_path %>
 <% end %>
@@ -27,7 +29,9 @@
 <% @records.each do |aaa| %>
   <%#= image_tag ad %>
   <div class="col-sm m-1 text-center">
-  <div><%= link_to image_tag(aaa.variant(resize_to_limit: [100, 100])), picture_path(aaa) %></div>
+  <div><%#= link_to image_tag(aaa.variant(resize_to_limit: [100, 100])), picture_path(aaa) %></div>
+  <div><%= link_to image_tag(aaa.variant(resize_to_limit: [100, 100])), show_hashs_path({id: aaa, hash_id: hash_id}) %></div>
+  <div><%= hash_id %></div>
   </div>
 <% end %>
   </div>
