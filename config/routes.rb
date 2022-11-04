@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  #resources :movies, only: :index
+  # resources :movies, only: :index
+  # get 'pictures/', to: 'pictures#index', as: 'pictures'
   get 'hash/show_hashs/:id', to: 'pictures#show', as: 'show_hashs'
 
   get 'hash/index/:id', to: 'picturehash#index', as: 'picture_hash_index'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get 'hash/add', to: 'picturehash#add', as: 'picture_hash_add'
 
   #resources :uploads
+
   resources :pictures, only: %i[index show]
   devise_for :users
   root to: "pages#home"
