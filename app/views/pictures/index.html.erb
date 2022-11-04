@@ -1,7 +1,17 @@
 <h1>Pictures/index</h1>
 <li>Pictures: <%= @pictures.count %></li>
+<li>Pictures: <%#= @hash_id[0].id %></li>
 <hr>
-<%= form_with url: pictures_path, method: :get, class: "d-flex" do %>
+<%#= form_with url: pictures_path, method: :get, class: "d-flex" do %>
+
+<% if @hash_id %>
+  <% path =  picture_hash_index_path(@hash_id[0].id)%>
+<% else %>
+  <% path =  pictures_path %>
+<% end %>
+
+
+<%= form_with url: path, method: :get, class: "d-flex" do %>
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
