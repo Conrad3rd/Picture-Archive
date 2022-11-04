@@ -36,17 +36,17 @@
     <% current_id = params[:id].to_i %>
     <% if element == current_id %>
       <% if index > 0 %>
-        <%= link_to "prev", show_hashs_path(id: @pic_list[index-1], hash_id: params[:hash_id])  %>
+        <%= link_to "prev", picture_path(id: @pic_list[index-1], hash_id: params[:hash_id])  %>
       <% else %>
         <%= "prev" %>
       <% end %>
       <% if index < @hashs.count-1 %>
-        <%= link_to "next", show_hashs_path(id: @pic_list[index+1], hash_id: params[:hash_id])  %>
+        <%= link_to "next", picture_path(id: @pic_list[index+1], hash_id: params[:hash_id])  %>
       <% else %>
         <%= "next" %>
       <% end %>
       <% if @hashname[0] %>
-        - from: <%= link_to "#{@hashname[0].name}", picture_hash_index_path(@hashname[0].id) %> Hash
+        - from: <%= link_to "#{@hashname[0].name}", pictures_path(query: @hashname[0].name) %> Hash
       <% end %>
     <% end %>
     <% } %>
