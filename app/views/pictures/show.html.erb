@@ -8,7 +8,7 @@
     <% if @picture.id > 1 %>
       <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
     <% else %>
-      <div id="last" class="btn"><%= "last"%></div>
+      <div id="last" class="btn"><%= "last" %></div>
       <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
     <% end %>
     <% if @picture.id < $pictures_count %>
@@ -27,8 +27,6 @@
       <% path =  pictures_path %>
     <% end %>
 
-
-
     <%= form_with url: path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
         params[:query],
@@ -39,11 +37,6 @@
     <% end %>
   </div>
 </div>
-
-
-
-
-
 
 <!-- gallery section -->
 <div class="showpage row justify-content-between m-0">
@@ -126,9 +119,9 @@
         </div>
       <% end %>
       <hr>
-      <a class="btn p-0 m-0" href="https://google.de">
-        <div class="button p-2 m-0">
-          <div>Hallo</div>
+      <a class="btn button p-0 m-0" href="https://google.de">
+        <div class=" p-2 m-0">
+          <div>Test</div>
         </div>
       </a>
     </div>
