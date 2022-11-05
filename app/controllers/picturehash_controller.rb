@@ -21,7 +21,7 @@ class PicturehashController < ApplicationController
     @id = @del.pluck("picture_id")
     @del.destroy_all
 
-    redirect_to picture_path(@id), notice: "Hashtag was successfully removed."
+    redirect_to picture_path(@id, params[:picture_id], hash_id: params[:hash_id]), notice: "Hashtag was successfully removed."
   end
 
   def add
@@ -42,9 +42,9 @@ class PicturehashController < ApplicationController
     end
 
     if @add.save
-      redirect_to picture_path(params[:picture_id]), notice: "Hashtag was successfully added."
+      redirect_to picture_path(params[:picture_id], hash_id: params[:hash_id]), notice: "Hashtag was successfully added."
     else
-      redirect_to picture_path(params[:picture_id]), alert: "Hashtag already added."
+      redirect_to picture_path(params[:picture_id], hash_id: params[:hash_id]), alert: "Hashtag already added."
     end
   end
 end
