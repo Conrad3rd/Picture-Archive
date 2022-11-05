@@ -1,21 +1,52 @@
 <%# <h1>picture/show</h1> %>
+
 <!-- navigation -->
-<div style="" class="show-all container text-center ">
-  <%= link_to "index", pictures_path, class: "btn" %>
-  <% if @picture.id > 1 %>
-    <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
-  <% else %>
-    <div id="last" class="btn"><%= "last"%></div>
-    <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
-  <% end %>
-  <% if @picture.id < $pictures_count %>
-    <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
-  <% else %>
-    <div id="last" class="btn"><%= "last"%></div>
-  <% end %>
+<div id="show-nav">
+
+  <div id="show-control" class="show-all">
+    <%= link_to "index", pictures_path, class: "btn" %>
+    <% if @picture.id > 1 %>
+      <%= link_to "prev", picture_path(@picture.id - 1), class: "btn" %>
+    <% else %>
+      <div id="last" class="btn"><%= "last"%></div>
+      <%#= link_to "last", picture_path(), id: "last", class: "btn"  %>
+    <% end %>
+    <% if @picture.id < $pictures_count %>
+      <%= link_to "next", picture_path(@picture.id + 1), class: "btn" %>
+    <% else %>
+      <div id="last" class="btn"><%= "last"%></div>
+    <% end %>
+  </div>
+
+<div id="show-search">
+    <% if @hash_id %>
+      <%# path =  picture_hash_index_path(@hash_id[0].id)%>
+      <% hash_id = @hash_id[0].id %>
+      <% path =  pictures_path %>
+    <% else %>
+      <% path =  pictures_path %>
+    <% end %>
+
+
+
+    <%= form_with url: path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a hash"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
+
+
+
+
+
+
+<!-- gallery section -->
 <div class="showpage row justify-content-between m-0">
-  <!-- pic sectiontion -->
   <div style="" class="viewer col-sm-8">
     <% if current_user.id === 1 %>
       <div style="" class="heightpic">

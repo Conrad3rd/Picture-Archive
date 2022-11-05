@@ -12,6 +12,19 @@
 @import "pages/index";
 @import "responsiv/index";
 
+#show-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+#show-control {
+  display: flex;
+}
+
+#show-search {
+  display: flex;
+}
+
 ul.pagination {
   flex-wrap: wrap;
 }
