@@ -1,6 +1,8 @@
 <h1>Pictures/index</h1>
-<li>Pictures: <%= @pictures.count %></li>
-<li>Pictures: <%#= @hash_id[0].id %></li>
+<li>Available: <%= @pictures.count %></li>
+<% if @existing_pics %>
+  <li>Existing: <%= @existing_pics.count if @existing_pics %></li>
+<% end %>
 <hr>
 <%#= form_with url: pictures_path, method: :get, class: "d-flex" do %>
 

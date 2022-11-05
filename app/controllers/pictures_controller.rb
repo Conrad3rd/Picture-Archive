@@ -6,6 +6,7 @@ class PicturesController < ApplicationController
   Pagy::DEFAULT[:size] = [8, 8, 8, 8]
   # GET /pictures or /pictures.json
   $pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
+  # @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @existing_pics))
 
   def index
     # @pictures = ActiveStorage::Attachment.where(record_type: "User")
@@ -40,38 +41,11 @@ class PicturesController < ApplicationController
     #   @pictures = ActiveStorage::Attachment.where(record_type: "User")
     # end
 
-
-
-
-
-
-
-
-
-
-
-
     # ActiveStorage::Attachment.where(record_type: "User")
     # @hash = PicturesHashtag.where(hashtag_id: params[:hash_id])
-
-
-
-
-
-
-
-
   end
 
   def show
-
-
-
-
-
-
-
-
     # @pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
     # @picture = ActiveStorage::Attachment.find(params[:id])
     @picture = ActiveStorage::Attachment.where(name: "pictures")
@@ -101,16 +75,6 @@ class PicturesController < ApplicationController
     @hashname = Hashtag.where(id: params[:hash_id])
 
     @find_hash = Hashtag.all
-
-
-
-
-
-
-
-
-
-
 
     @pic_list = []
     @hashs.each do |aa|
@@ -145,6 +109,38 @@ class PicturesController < ApplicationController
   #   }
   end
 
+
+  def add
+    if params[:form] == "true"
+      @hash_id = Hashtag.where(name: params[:hashtag_id]).ids
+      if @hash_id[0].nil?
+        Hashtag.create(name: params[:hashtag_id])
+        @hash_id = Hashtag.where(name: params[:hashtag_id]).ids
+        # hashtag_id = params[:hashtag_id]
+        # puts "+++++++++++++++++++++++++++++++++++++"
+      end
+      # puts "\n#########################################"
+      # puts "#{@hash_id[0].nil?} : #{@hash_id[0]}"
+      # puts "#########################################\n\n"
+      @add = PicturesHashtag.create(hashtag_id: @hash_id[0], picture_id: params[:picture_id])
+    else
+      @add = PicturesHashtag.create(hashtag_id: params[:hashtag_id], picture_id: params[:picture_id])
+    end
+
+    if @add.save
+      redirect_to picture_path(params[:picture_id], hash_id: params[:hash_id]), notice: "Hashtag was successfully added."
+    else
+      redirect_to picture_path(params[:picture_id], hash_id: params[:hash_id]), alert: "Hashtag already added."
+    end
+  end
+
+  def remove
+    @del = PicturesHashtag.where(id: params[:id])
+    @id = @del.pluck("picture_id")
+    @del.destroy_all
+
+    redirect_to picture_path(@id, params[:picture_id], hash_id: params[:hash_id]), notice: "Hashtag was successfully removed."
+  end
 
 
 end
