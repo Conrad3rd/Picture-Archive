@@ -23,12 +23,13 @@
 <hr>
 <div class="container">
   <div class="row">
-<% @records.each do |aaa| %>
+<% @pictures.each do |record| %>
   <%#= image_tag ad %>
   <div class="col-sm m-1 text-center">
-  <div><%#= link_to image_tag(aaa.variant(resize_to_limit: [100, 100])), picture_path(aaa) %></div>
-  <div><%= link_to image_tag(aaa.variant(resize_to_limit: [100, 100])), picture_path({id: aaa, hash_id: hash_id}) %></div>
-  <div><%= aaa.id %></div>
+  <div><%#= link_to image_tag(record.variant(resize_to_limit: [100, 100])), picture_path(record) %></div>
+  <div><%#= link_to image_tag(record.variant(resize_to_limit: [100, 100])), picture_path({id: record, hash_id: hash_id}) %></div>
+  <div><%= link_to image_tag(record.variant(resize_to_fill: [100, 100])), picture_path({id: record, hash_id: hash_id}) %></div>
+  <div><%= record.id %></div>
   </div>
 <% end %>
   </div>

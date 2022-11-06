@@ -39,6 +39,8 @@
     <% if current_user.id === 1 %>
       <div style="" class="heightpic">
         <%= image_tag @picture.variant(resize_to_limit: [1024, 1024]), class: "showpic"  %>
+        <%#= image_tag @picture.variant(resize_and_pad: [500, 500, gravity: 'north', background: '#000']), class: "showpic"  %>
+        <%#= image_tag @picture.variant(resize_to_fill: [500, 500]), class: "showpic"  %>
         <%#= image_tag @picture, class: "showpic" %>
       </div>
     <% else %>
