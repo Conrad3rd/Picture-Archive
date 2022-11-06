@@ -12,6 +12,10 @@
 @import "pages/index";
 @import "responsiv/index";
 
+#index-search {
+  width: 25%;
+}
+
 #show-nav {
   display: flex;
   justify-content: space-between;

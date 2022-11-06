@@ -19,6 +19,8 @@
   </div>
 
 <div id="show-search">
+
+
     <% if @hash_id %>
       <%# path =  picture_hash_index_path(@hash_id[0].id)%>
       <% hash_id = @hash_id[0].id %>
@@ -27,14 +29,7 @@
       <% path =  pictures_path %>
     <% end %>
 
-    <%= form_with url: path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a hash"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
+    <%= render "form" %>
   </div>
 </div>
 

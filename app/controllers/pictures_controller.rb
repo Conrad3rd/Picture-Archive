@@ -6,9 +6,10 @@ class PicturesController < ApplicationController
   Pagy::DEFAULT[:size] = [8, 8, 8, 8]
   # GET /pictures or /pictures.json
   # @pictures = ActiveStorage::Attachment.where(record_type: "User").and(ActiveStorage::Attachment.where(blob_id: @existing_pics))
+  $pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
 
   def index
-    # @pictures_count = ActiveStorage::Attachment.where(record_type: "User").count
+    @find_hash = Hashtag.all
     # @pictures = ActiveStorage::Attachment.where(record_type: "User")
 
     if params[:query].present?

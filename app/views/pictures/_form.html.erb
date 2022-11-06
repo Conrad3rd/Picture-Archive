@@ -1,0 +1,18 @@
+<%= form_with url: pictures_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    list: "hash_list",
+    placeholder: "Find a hash asdf"
+  %>
+
+  <datalist id='hash_list'>
+  <% @find_hash.each do |hash| %>
+    <option value='<%= hash.name %>'>
+    <% end %>
+  </datalist>
+        <input type='hidden' name='hash_id' value='<%= params[:hash_id] %>' />
+        <input type='hidden' name='form' value='true' />
+
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
